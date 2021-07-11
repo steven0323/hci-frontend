@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Learning Map</title>
+	<!-- <link rel="icon" type="image/png" href="molecule.png" /> -->
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>	
+	<!-- Add SDKs for Firebase products that you want to use
+	https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+	<script language="javascript">
+				
+		function storedata() {
+			if (!firebase.apps.length) {
+			firebase.initializeApp({
+				databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app/"
+			});
+			}else {
+			firebase.app(); // if already initialized, use that one
+			}
+			const mydatabase = firebase.database();
+			mydatabase.ref('/').set({a:123});
+			console.log("hit!")	
+
+
+
+
+		/*var firebaseConfig = {
+			apiKey: "AIzaSyD5ro8Oj_EHuFweJR3bywJCO49egETQp7g",
+			authDomain: "test-7916a.firebaseapp.com",
+			databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "test-7916a",
+			storageBucket: "test-7916a.appspot.com",
+			messagingSenderId: "931195594829",
+			appId: "1:931195594829:web:65c637f9dc54e245d4d404",
+			measurementId: "G-T5RH81V2MG"
+			};
+		// Initialize Firebase
+		if (!firebase.apps.length) {
+		firebase.initializeApp(firebaseConfig);
+		}else {
+		firebase.app(); // if already initialized, use that one
+		}
+		firebase.analytics();
+		var db = firebase.firestore();
+		db.collection("users").add({
+			first: "Ada",
+			last: "Lovelace",
+			born: 1815
+		})
+		.then((docRef) => {
+			console.log("Document written with ID: ", docRef.id);
+		})
+		.catch((error) => {
+			console.error("Error adding document: ", error);
+		});
+		console.log("hit!!")
+		*/
+		}
+	</script>
+
+</head>
+<body>
+	<!-- 欲插入 React Component 的位置 -->
+	<div id="app"></div>
+	
+</body>
+</html
