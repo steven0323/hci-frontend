@@ -154,7 +154,7 @@ HiddenJs.propTypes = {
    */
   xsUp: _propTypes.default.bool
 };
-HiddenJs.propTypes = (0, _exactProp.default)(HiddenJs.propTypes, 'HiddenJs');
+HiddenJs.propTypes = (0, _exactProp.default)(HiddenJs.propTypes);
 
 var _default = (0, _withWidth.default)()(HiddenJs);
 

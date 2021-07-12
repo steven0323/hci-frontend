@@ -8,10 +8,11 @@ export interface ButtonBaseProps
       ButtonBaseClassKey
     > {
   action?: (actions: ButtonBaseActions) => void;
-  buttonRef?: React.Ref<any>;
+  buttonRef?: React.Ref<any> | React.RefObject<any>;
   centerRipple?: boolean;
   component?: React.ReactType<ButtonBaseProps>;
   disableRipple?: boolean;
+  disableTouchRipple?: boolean;
   focusRipple?: boolean;
   focusVisibleClassName?: string;
   onFocusVisible?: React.FocusEventHandler<any>;

@@ -121,8 +121,9 @@ export class resizeCells extends Plugin {
 		this.maxX = 1000000;
 
 		if (this.wholeTable != null) {
-			tableBox = (this.workTable
-				.parentNode as HTMLElement).getBoundingClientRect();
+			tableBox = (
+				this.workTable.parentNode as HTMLElement
+			).getBoundingClientRect();
 
 			this.minX = tableBox.left;
 			this.maxX = this.minX + tableBox.width;
@@ -459,23 +460,28 @@ export class resizeCells extends Plugin {
 			.on(
 				table,
 				'mousemove.resize-cells touchmove.resize-cells',
-				(event: MouseEvent) => {
-					if (this.j.isLocked) {
-						return;
+				this.j.async.throttle(
+					(event: MouseEvent) => {
+						if (this.j.isLocked) {
+							return;
+						}
+
+						const cell = Dom.up(
+							event.target as HTMLElement,
+							elm => Dom.isCell(elm, this.j.ew),
+							table
+						) as HTMLTableCellElement;
+
+						if (!cell) {
+							return;
+						}
+
+						this.calcHandlePosition(table, cell, event.offsetX);
+					},
+					{
+						timeout: this.j.defaultTimeout
 					}
-
-					const cell = Dom.up(
-						event.target as HTMLElement,
-						elm => Dom.isCell(elm, this.j.ew),
-						table
-					) as HTMLTableCellElement;
-
-					if (!cell) {
-						return;
-					}
-
-					this.calcHandlePosition(table, cell, event.offsetX);
-				}
+				)
 			);
 
 		this.createResizeHandle();

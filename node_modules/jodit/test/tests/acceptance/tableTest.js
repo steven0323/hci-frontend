@@ -3,6 +3,7 @@
  * Released under MIT see LICENSE.txt in the project root for license information.
  * Copyright (c) 2013-2021 Valeriy Chupurnov. All rights reserved. https://xdsoft.net
  */
+
 describe('Tables Jodit Editor Tests', function () {
 	describe('Methods', function () {
 		it('After init container must has one element .jodit-table-resizer', function () {
@@ -1180,15 +1181,16 @@ describe('Tables Jodit Editor Tests', function () {
 		});
 
 		describe('Select cells', function () {
-			it('When we press mouse button over cell and move mouse to another cell, it should select all cells in bound', function () {
+			it('When we press mouse button over cell and move mouse to another cell, it should select all cells in bound', function (done) {
 				const editor = getJodit();
 
-				editor.value =
-					'<table>' +
-					'<tr><td>1</td><td>2</td></tr>' +
-					'<tr><td>3</td><td>4</td></tr>' +
-					'<tr><td>5</td><td>6</td></tr>' +
-					'</table>';
+				editor.value = `<table>
+					<tbody>
+						<tr><td>1</td><td>2</td></tr>
+						<tr><td>3</td><td>4</td></tr>
+						<tr><td>5</td><td>6</td></tr>
+					</tbody>
+				</table>`;
 
 				let td = editor.editor.querySelector('td');
 
@@ -1196,11 +1198,14 @@ describe('Tables Jodit Editor Tests', function () {
 
 				td = editor.editor.querySelectorAll('td')[3];
 
-				simulateEvent(['mousemove', 'mouseup'], td);
+				simulateEvent(['mousemove', 'mouseup', 'click'], td);
 
-				expect(
-					editor.getInstance('Table', editor.o).selected.size
-				).equals(4);
+				editor.async.requestIdleCallback(() => {
+					expect(
+						editor.getInstance('Table', editor.o).selected.size
+					).equals(4);
+					done();
+				});
 			});
 
 			describe('Set custom selected border color', function () {
@@ -1325,6 +1330,8 @@ describe('Tables Jodit Editor Tests', function () {
 					'</tbody>' +
 					'</table>';
 
+				editor.editor.scrollIntoView();
+
 				let td = editor.editor.querySelector('td');
 
 				simulateEvent('mousedown', td);
@@ -1409,9 +1416,8 @@ describe('Tables Jodit Editor Tests', function () {
 							1,
 							editor.editor.querySelector('table'),
 							function (options) {
-								options.relatedTarget = editor.editor.querySelector(
-									'p'
-								);
+								options.relatedTarget =
+									editor.editor.querySelector('p');
 							}
 						);
 						simulateEvent(
@@ -1443,10 +1449,12 @@ describe('Tables Jodit Editor Tests', function () {
 					'<tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>' +
 					'</table>';
 
+				editor.editor.scrollIntoView();
+
 				const td = editor.editor.querySelectorAll('td')[1],
 					box = td.getBoundingClientRect();
 
-				simulateEvent('mousemove', 1, td, function (options) {
+				simulateEvent('mousemove', td, function (options) {
 					options.clientX = box.left;
 					options.offsetX = 0;
 					options.pageX = 0;
@@ -1455,7 +1463,6 @@ describe('Tables Jodit Editor Tests', function () {
 
 				simulateEvent(
 					'mousedown',
-					1,
 					editor.container.querySelector('.jodit-table-resizer'),
 					function (options) {
 						options.clientX = box.left;
@@ -1464,7 +1471,7 @@ describe('Tables Jodit Editor Tests', function () {
 					}
 				);
 
-				simulateEvent('mousemove', 1, editor.ew, function (options) {
+				simulateEvent('mousemove', editor.ew, function (options) {
 					options.clientX = box.left + 500; // can move only on 5 pixels
 					options.pageX = 0;
 					options.pageY = 0;
@@ -1477,6 +1484,7 @@ describe('Tables Jodit Editor Tests', function () {
 						10
 					) < 55
 				).is.true;
+
 				done();
 			});
 

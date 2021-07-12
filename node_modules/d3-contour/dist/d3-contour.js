@@ -1,35 +1,35 @@
-// https://d3js.org/d3-contour/ Version 1.2.0. Copyright 2018 Mike Bostock.
+// https://d3js.org/d3-contour/ v1.3.2 Copyright 2018 Mike Bostock
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'd3-array'], factory) :
-	(factory((global.d3 = global.d3 || {}),global.d3));
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array')) :
+typeof define === 'function' && define.amd ? define(['exports', 'd3-array'], factory) :
+(factory((global.d3 = global.d3 || {}),global.d3));
 }(this, (function (exports,d3Array) { 'use strict';
 
 var array = Array.prototype;
 
 var slice = array.slice;
 
-var ascending = function(a, b) {
+function ascending(a, b) {
   return a - b;
-};
+}
 
-var area = function(ring) {
+function area(ring) {
   var i = 0, n = ring.length, area = ring[n - 1][1] * ring[0][0] - ring[n - 1][0] * ring[0][1];
   while (++i < n) area += ring[i - 1][1] * ring[i][0] - ring[i - 1][0] * ring[i][1];
   return area;
-};
+}
 
-var constant = function(x) {
+function constant(x) {
   return function() {
     return x;
   };
-};
+}
 
-var contains = function(ring, hole) {
+function contains(ring, hole) {
   var i = -1, n = hole.length, c;
   while (++i < n) if (c = ringContains(ring, hole[i])) return c;
   return 0;
-};
+}
 
 function ringContains(ring, point) {
   var x = point[0], y = point[1], contains = -1;
@@ -53,7 +53,7 @@ function within(p, q, r) {
   return p <= q && q <= r || r <= q && q <= p;
 }
 
-var noop = function() {};
+function noop() {}
 
 var cases = [
   [],
@@ -74,7 +74,7 @@ var cases = [
   []
 ];
 
-var contours = function() {
+function contours() {
   var dx = 1,
       dy = 1,
       threshold = d3Array.thresholdSturges,
@@ -249,7 +249,7 @@ var contours = function() {
   };
 
   return contours;
-};
+}
 
 // TODO Optimize edge cases.
 // TODO Optimize index calculation.
@@ -303,9 +303,14 @@ function defaultY(d) {
   return d[1];
 }
 
-var density = function() {
+function defaultWeight() {
+  return 1;
+}
+
+function density() {
   var x = defaultX,
       y = defaultY,
+      weight = defaultWeight,
       dx = 960,
       dy = 500,
       r = 20, // blur radius
@@ -320,10 +325,11 @@ var density = function() {
         values1 = new Float32Array(n * m);
 
     data.forEach(function(d, i, data) {
-      var xi = (x(d, i, data) + o) >> k,
-          yi = (y(d, i, data) + o) >> k;
+      var xi = (+x(d, i, data) + o) >> k,
+          yi = (+y(d, i, data) + o) >> k,
+          wi = +weight(d, i, data);
       if (xi >= 0 && xi < n && yi >= 0 && yi < m) {
-        ++values0[xi + yi * n];
+        values0[xi + yi * n] += wi;
       }
     });
 
@@ -387,6 +393,10 @@ var density = function() {
     return arguments.length ? (y = typeof _ === "function" ? _ : constant(+_), density) : y;
   };
 
+  density.weight = function(_) {
+    return arguments.length ? (weight = typeof _ === "function" ? _ : constant(+_), density) : weight;
+  };
+
   density.size = function(_) {
     if (!arguments.length) return [dx, dy];
     var _0 = Math.ceil(_[0]), _1 = Math.ceil(_[1]);
@@ -411,7 +421,7 @@ var density = function() {
   };
 
   return density;
-};
+}
 
 exports.contours = contours;
 exports.contourDensity = density;
