@@ -85,7 +85,8 @@ class App extends React.Component {
       Progress:1,
       SearchHistory:null,
       VisJson:null,
-      SearchKeyword:null
+      SearchKeyword:null,
+      NewJson:null,
   };
     this.SetProgress = this.SetProgress.bind(this);
     this.SetMenuOpen = this.SetMenuOpen.bind(this);
@@ -94,19 +95,36 @@ class App extends React.Component {
     this.SetSearchKeyword = this.SetSearchKeyword.bind(this);
     this.OpenDrawer = this.OpenDrawer.bind(this);
     this.CloseDrawer = this.CloseDrawer.bind(this);
+    this.SetVisJson = this.CloseDrawer.bind(this);
+    this.SetNewJson = this.SetNewJson.bind(this);
+  }
+  SetVisJson(json){
+    this.setState({VisJson : json});
+  }
+  SetNewJson(json){
+    this.setState({NewJson : json});
   }
 
-
   SetProgress(progress,json){
+    console.log("this.state.NewJson == ", this.state.NewJson);
+    console.log("this.state.VisJson == ", this.state.VisJson);
+    console.log("json == ", json);
     // console.log("p,k",progress,json);
     if(json==undefined){
       this.setState({Progress:progress});
+      console.log(" json == undefined!!");
     }
     else{
-      this.setState({
-        Progress: progress,
-        VisJson : json
-      });
+      console.log("enter else!!")
+      this.setState(
+        {
+          Progress: progress,
+          VisJson : json,
+        }
+      );
+      this.setState({NewJson:json});
+    console.log("this.state.NewJson == ", this.state.NewJson);
+    console.log("this.state.VisJson == ", this.state.VisJson);
     }
   }
   SetMenuOpen(){
@@ -166,7 +184,6 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-          <Editor />
         </div>
       
       );
@@ -181,7 +198,6 @@ class App extends React.Component {
           />
           <CreatingField SetProgress = {this.SetProgress} SearchKeyword={this.state.SearchKeyword} />
           </MuiThemeProvider>
-          <Editor />
         </div>
       );
     }else if(this.state.Progress==3){
@@ -193,7 +209,12 @@ class App extends React.Component {
             SetMenuOpen = {this.SetMenuOpen} 
             SetSearchHistory={this.SetSearchHistory}
           />
-          <LearningMapFrame data={this.state.VisJson} OpenDrawer={(text) =>this.OpenDrawer(text)}/>
+          <LearningMapFrame data={this.state.VisJson} 
+                            OpenDrawer={(text) =>this.OpenDrawer(text)}
+                            SetVisJson = {this.SetVisJson}
+                            SetNewJson = {this.SetNewJson}
+                            NewJson = {this.state.NewJson}
+          />
           <Dialog
             fullScreen
             open={this.state.drawer}
@@ -202,7 +223,6 @@ class App extends React.Component {
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
           </MuiThemeProvider>
-          <Editor />
         </div>
       );
     }

@@ -145,6 +145,12 @@ class LearningMapFrame extends Component {
             });
         }
     }
+    componentDidUpdate(prevProps) {
+        // 常見用法（別忘了比較 prop）：
+        if (this.props !== prevProps) {
+          this.forceUpdate();
+        }
+      }
     SetPath_ConceptIndex(method, index) {
         if (method == "add") {
             this.setState({
@@ -159,10 +165,10 @@ class LearningMapFrame extends Component {
         }
     }
     SetMapConsult(method){
-        if (method == "add"){
+        if (method == "ask"){
             this.setState({MapConsult: true});
             console.log("SetMapConsult(true!!)");
-        } else if (method =="close") {
+        } else if (method =="dont_ask") {
             console.log("SetMapConsult(false)!!)");
             this.setState({MapConsult:false });
     }
@@ -205,12 +211,10 @@ class LearningMapFrame extends Component {
                         SetHightlightWord={this.SetHightlightWord}
                     />
                 </div>
-                <div style={styles.Div}>
-                    {
-                        <Editor content = {this.state.content}
-                                SetMapConsult = {this.SetMapConsult}
-                        />
-                    }
+                <div width={window.innerWidth - 50} height={window.innerHeight - 100}>
+                    <Editor content = {this.state.content}
+                            SetMapConsult = {this.SetMapConsult}
+                    />
                     
                 </div>
                 <ConceptDetailPanel
@@ -226,8 +230,12 @@ class LearningMapFrame extends Component {
                     SetBigCircleIndex={this.SetBigCircleIndex}
                 />
                 <MapApprovPanel 
+                    data={this.props.data}
                     MapConsult={this.state.MapConsult}
-                    SetMapConsult={this.SetMapConsult}    
+                    SetMapConsult={this.SetMapConsult}
+                    SetVisJson = {this.props.SetVisJson}
+                    SetNewJson = {this.props.SetNewJson}   
+                    NewJson = {this.props.NewJson}
                 />
                 <Notification open={this.state.Path_ConceptIndex == null} />
             </div>
