@@ -231,7 +231,4 @@ class App extends React.Component {
 
 
     
-
-ReactDOM.render(
-	<h1>Hello Steven!</h1>
-, app)
+ReactDOM.render(<div id="app">, getElementById("app"))
