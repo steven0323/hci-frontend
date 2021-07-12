@@ -9,6 +9,7 @@ import ConceptSequence from './ConceptSequence';
 import RelatedVideosPanel from './RelatedVideosPanel'
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Graph from '../newdirected/Graph';
 
 const styles = ({
     rootTitle:{
@@ -30,13 +31,15 @@ const styles = ({
         // left:930,
         right:'0%',
         flexWrap: 'no-wrap',
-        zIndex:6
+        zIndex:6,
         // margin:10,
         // padding:10
+        width:window.innerWidth - 50,
+        height:window.innerHeight - 100
     },
   
   paper2: {
-    width: 520,
+    width: 1560,
     // height: 850,
     overflowX: "hidden",
     overflowY: "scroll",
@@ -71,19 +74,78 @@ const styles = ({
     display:"flex"
   }
 });
-
+var SentRange = []
+var ConceptRange = []
 class MapApprovPanel extends Component {
     constructor(props) {
         super(props);
         this.CloseOnClick = this.CloseOnClick.bind(this);
+        console.log("before getting, this.props.NewJson == ", this.props.NewJson);
+    //for getting new json---------------------------------
+        var tmp=this;
+        fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
+        .then(function (res) {
+        //    console.log(res.json());
+            return res.json();
+        }).then(function(myJson) {
+            console.log(myJson);
+            tmp.props.SetNewJson(myJson);
+            return myJson;
+          });
+        this.props.SetNewJson(tmp);
+        console.log("this.props.NewJson == ", this.props.NewJson);
+            
+        
+    //for drawing map-----------------------
+            //console.log("[graph]", ",", this.props.NewJson.search_info.key);
+            // console.log("cheeeee",this.props.data.concept_relationship.nodes);
+            // calcalate SentimentScoreRange [SentScoreMin,SentScoreMax];
+            /*var tmpList = [];
+            for (var e in this.props.NewJson.videos_info) {
+                tmpList.push(this.props.NewJson.videos_info[e].userFeedbackScore);
+            };
+            var tmpList2 = [];
+            for (var e in this.props.NewJson.concept_relationship.nodes) {
+                tmpList2.push(this.props.NewJson.concept_relationship.nodes[e].count);
+            };
+            // console.log("SentRange",[Math.min(...tmpList),Math.max(...tmpList)]);
+            // console.log("tmpList2",tmpList2);
+            SentRange = [Math.min(...tmpList), Math.max(...tmpList)];
+            ConceptRange = [Math.min(...tmpList2), Math.max(...tmpList2), tmpList2.reduce((a, b) => a + b, 0)];
+            console.log(this.props.NewJson);
+            */
+        }
+    componentDidUpdate(prevProps) {
+        // 常見用法（別忘了比較 prop）：
+        if (this.props !== prevProps) {
+          this.forceUpdate();
+        }
+      }
+      componentWillMount() {
+        console.log("[graph]", ",", this.props.data.search_info.key);
+        // console.log("cheeeee",this.props.data.concept_relationship.nodes);
+        // calcalate SentimentScoreRange [SentScoreMin,SentScoreMax];
+        var tmpList = [];
+        for (var e in this.props.data.videos_info) {
+
+            tmpList.push(this.props.data.videos_info[e].userFeedbackScore);
+        };
+        var tmpList2 = [];
+        for (var e in this.props.data.concept_relationship.nodes) {
+            tmpList2.push(this.props.data.concept_relationship.nodes[e].count);
+        };
+        // console.log("SentRange",[Math.min(...tmpList),Math.max(...tmpList)]);
+        // console.log("tmpList2",tmpList2);
+        SentRange = [Math.min(...tmpList), Math.max(...tmpList)];
+        ConceptRange = [Math.min(...tmpList2), Math.max(...tmpList2), tmpList2.reduce((a, b) => a + b, 0)];
     }
     CloseOnClick(){
-        this.props.SetMapConsult("close");
+        this.props.SetMapConsult("dont_ask");
     }
     render() {
 
         if(this.props.MapConsult==true){
-            console.log("this is MapPanel!!")
+            console.log(this.props.NewJson);
             return (
                 <div style = {styles.OuterContainer}>
                     {/* <Paper style={styles.paper2} elevation={13}> */}
@@ -95,29 +157,19 @@ class MapApprovPanel extends Component {
                     </IconButton>
                     </div>
                     <div style = {styles.paper2_UpperContainer}>
-                        <div style={styles.containerTitle}> Video Ring</div>
                         <div style={styles.content}>
-                        <g>
-                            {"Related Video Sequence"}
-                        </g>
+                            <button>Approve</button>
+                            <button onClick = {this.CloseOnClick}>Disprove</button>
                         </div>
                         
                     </div>
                     <div height="5"><hr></hr></div>
                     <div style = {styles.paper2_BelowContainer}>
-                        <div style = {styles.container3_1}>
-                        {/* <div style = {Object.assign({}, styles.container3_1, {height:window.innerHeight-900})}> */}
-                        
-                            <div style={styles.containerTitle}> Concept Path </div>
-                            {"ConceptSequence " }
-                        </div>
-                        <div style = {styles.container3_2}>
-                        {/* <div style = {Object.assign({}, styles.container3_2, {height:window.innerHeight-900})}> */}
-                            <div style={styles.containerTitle}> 
-                            Video Path
-                            </div>
-                            {"VideoSequence"}
-                        </div>
+                        <Graph data={this.props.NewJson}
+                                width={window.innerWidth} height={window.innerHeight}
+                                SentRange={SentRange}
+                                ConceptRange={ConceptRange}
+                            />
                     </div>
                     </Paper>  
                 </div>
@@ -131,3 +183,7 @@ class MapApprovPanel extends Component {
     }
 }
 export default MapApprovPanel;
+
+//button 大一點，Dis紅色，Approve藍色
+//node 顏色要改，group=1 要改顏色
+//是是把圖畫小一點

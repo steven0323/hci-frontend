@@ -17,18 +17,6 @@ if (!firebase.apps.length) {
 
 const mydatabase = firebase.database();
 
-var options = {
-  buttonList: [
-      ['undo', 'redo'],
-      ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-      ['removeFormat'],
-      ['outdent', 'indent'],
-      ['fullScreen', 'showBlocks', 'codeView'],
-      ['preview', 'print'],
-      ['image', 'video']
-  ],
-  width: '100%'
-}
 
 // ex) A command plugin to add "text node" to selection
 var plugin_command = {
@@ -154,22 +142,20 @@ class Editor extends Component {
         }
       }      
   }
-  save(){
+  save(contents, isChange){
     //console.log("SetMapConsult(add)");
-    console.log(this.props);
-    this.props.SetMapConsult("add");
-    mydatabase.ref('/save').set({contents});
+    this.props.SetMapConsult("ask");
+    mydatabase.ref('/save/').set(this.ref.current.core.getContents());
+    
   }
 
     render() {
       return (
-        <div>
-          {this.state.content }
         <SunEditor 
                         SetMapConsult = {this.props.SetMapConsult}
                         setOptions = {{
                           width:(window.innerWidth-(window.innerWidth-50)/2)-600,
-                          height:window.innerHeight-100,
+                          height:(window.innerHeight-100),
                           plugins: [plugin_command],
                           buttonList:[
                             ['undo', 'redo'],
@@ -180,16 +166,13 @@ class Editor extends Component {
                             ['customCommand'],
                             ['-right', ':i-More Misc-default.more_vertical', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'print'],
                           ],
-                          callBackSave : this.save
+                          callBackSave : (contents, isChange) => this.save()
                     }}
                     onChange = {this.handleChange}
                     getSunEditorInstance={this.getSunEditorInstance}
                     onFocus = {this.onFocus}
                     onBlur = {this.onBlur}
-                    setContents = {"hot end 3d print stl file"}
-                    SetMapConsult={this.props.SetMapConsult}
                      />
-    </div>
       );
     }
   }
