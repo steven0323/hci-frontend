@@ -232,4 +232,8 @@ class App extends React.Component {
 
     
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+//ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(
+  <h1>Hello, world from index.js </h1>,
+  document.getElementById('app')
+);
