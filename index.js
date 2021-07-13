@@ -1,4 +1,4 @@
-/*
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -16,10 +16,10 @@ import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import { HashRouter } from "react-router-dom"
 
-//import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
-*/
+
 
 
 
@@ -171,7 +171,7 @@ class App extends React.Component {
       }; 
     if(this.state.Progress==1){
       return (       
-        `<div>
+        <div>
           <MuiThemeProvider>
               <BarField 
                 SetProgress = {this.SetProgress} 
@@ -187,12 +187,12 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-        </div>`
+        </div>
       
       );
     }else if(this.state.Progress==2){
       return ( 
-        `      
+            
         <div>
           <MuiThemeProvider>
           <BarField 
@@ -202,11 +202,11 @@ class App extends React.Component {
           />
           <CreatingField SetProgress = {this.SetProgress} SearchKeyword={this.state.SearchKeyword} />
           </MuiThemeProvider>
-        </div>`
+        </div>
       );
     }else if(this.state.Progress==3){
       return(
-        `<div style={{userSelect: "none"}}>
+        <div style={{userSelect: "none"}}>
           <MuiThemeProvider>
           <BarField 
             SetProgress = {this.SetProgress} 
@@ -227,7 +227,7 @@ class App extends React.Component {
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
           </MuiThemeProvider>
-        </div>`
+        </div>
       );
     }
   }
@@ -237,5 +237,5 @@ class App extends React.Component {
 const rootElement = document.getElementById("app");
 //ReactDOM.render(<h1>Testingfrom index.js</h1>, rosotElement);
 
-ReactDOM.render(App ,rootElement);
+ReactDOM.render(<App /> ,rootElement);
 
