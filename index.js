@@ -1,6 +1,5 @@
-const  React = require('react'); 
-const ReactDOM = require('react-dom');
-/*
+import React from 'react';
+import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dialog from '@material-ui/core/Dialog';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,7 +14,7 @@ import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import { HashRouter } from "react-router-dom"
-*/
+
 //import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
