@@ -2,7 +2,7 @@
   "name": "hci-frontend",
   "version": "1.0.0",
   "description": "refer to (d3.js): http://bl.ocks.org/jose187/4733747",
-  "homepage": "https://github.com/steven0323.github.io/hci-frontend",
+  "homepage": "https://steven0323.github.io/hci-frontend",
   "main": "index.js",
   "dependencies": {
     "@material-ui/core": "^1.5.1",
@@ -50,8 +50,6 @@
     "webpack-cli": "^2.1.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run dev",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d app",
     "build": "webpack --config webpack.config.js",
