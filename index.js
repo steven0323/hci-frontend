@@ -166,10 +166,6 @@ class App extends React.Component {
     window.onbeforeunload = function(event) { 
       return beforunload(event); 
       }; 
-      
-
-  
-  
     if(this.state.Progress==1){
       return (       
         <div>
