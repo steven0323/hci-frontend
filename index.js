@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -18,7 +19,7 @@ import { HashRouter } from "react-router-dom"
 //import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
-
+*/
 
 
 
@@ -239,3 +240,4 @@ ReactDOM.render(
   `<HashRouter base="/"><App /></HashRouter>`,
   rootElement
 );
+
