@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const  React = require('react'); 
+const ReactDOM = require('react-dom');
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dialog from '@material-ui/core/Dialog';
 import Drawer from '@material-ui/core/Drawer';
