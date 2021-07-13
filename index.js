@@ -14,7 +14,7 @@ import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import { HashRouter } from "react-router-dom"
 
 
 
@@ -230,10 +230,9 @@ class App extends React.Component {
 }
 
 const rootElement = document.getElementById("app");
-ReactDOM.render(<h1>Hello, world from index.js</h1>, rootElement);
-/*
+//ReactDOM.render(<h1>Hello, world from index.js</h1>, rootElement);
+
 ReactDOM.render(
-  <h1>Hello, world from index.js</h1>,
-  document.getElementById('app')
+  <HashRouter><App /></HashRouter>,
+  rootElement
 );
-*/
