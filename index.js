@@ -230,7 +230,7 @@ class App extends React.Component {
 }
 
 const rootElement = document.getElementById("app");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<h1>Hello, world from index.js</h1>, rootElement);
 /*
 ReactDOM.render(
   <h1>Hello, world from index.js</h1>,
