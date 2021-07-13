@@ -164,11 +164,11 @@ class App extends React.Component {
 
   render() {
     window.onbeforeunload = function(event) { 
-      return beforunload(event); 
+      return beforunload(event);
       }; 
     if(this.state.Progress==1){
       return (       
-        <div>
+        `<div>
           <MuiThemeProvider>
               <BarField 
                 SetProgress = {this.SetProgress} 
@@ -184,11 +184,12 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-        </div>
+        </div>`
       
       );
     }else if(this.state.Progress==2){
-      return (       
+      return ( 
+        `      
         <div>
           <MuiThemeProvider>
           <BarField 
@@ -198,11 +199,11 @@ class App extends React.Component {
           />
           <CreatingField SetProgress = {this.SetProgress} SearchKeyword={this.state.SearchKeyword} />
           </MuiThemeProvider>
-        </div>
+        </div>`
       );
     }else if(this.state.Progress==3){
       return(
-        <div style={{userSelect: "none"}}>
+        `<div style={{userSelect: "none"}}>
           <MuiThemeProvider>
           <BarField 
             SetProgress = {this.SetProgress} 
@@ -223,16 +224,16 @@ class App extends React.Component {
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
           </MuiThemeProvider>
-        </div>
+        </div>`
       );
     }
   }
 }
 
 const rootElement = document.getElementById("app");
-//ReactDOM.render(<h1>Testingfrom index.js</h1>, rootElement);
+//ReactDOM.render(<h1>Testingfrom index.js</h1>, rosotElement);
 
 ReactDOM.render(
-  <HashRouter base="/"><h1>Testingfrom index.js</h1></HashRouter>,
+  <HashRouter base="/"><App /></HashRouter>,
   rootElement
 );
