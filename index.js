@@ -234,6 +234,6 @@ const rootElement = document.getElementById("app");
 //ReactDOM.render(<h1>Testingfrom index.js</h1>, rosotElement);
 
 ReactDOM.render(
-  <HashRouter base="/"><App /></HashRouter>,
+  `<HashRouter base="/"><App /></HashRouter>`,
   rootElement
 );
