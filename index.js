@@ -16,7 +16,7 @@ import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import { HashRouter } from "react-router-dom"
 */
-import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+//import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 
