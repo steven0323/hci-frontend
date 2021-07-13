@@ -17,7 +17,7 @@ import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { HashRouter } from "react-router-dom"
 
 
-console.log("index .js is been read !!!")
+
 
 
 function storedata() {
@@ -78,7 +78,9 @@ function beforunload(event) { event = event ? event : (window.event ? window.eve
 
 
 class App extends React.Component {
+  
   constructor(props) {
+    console.log("index .js is been read !!!");
     super(props);
     this.state = {
       MenuOpened : false,
