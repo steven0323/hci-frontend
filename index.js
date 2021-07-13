@@ -14,8 +14,10 @@ import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { HashRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 
+
+console.log("index .js is been read !!!")
 
 
 function storedata() {
@@ -233,6 +235,6 @@ const rootElement = document.getElementById("app");
 //ReactDOM.render(<h1>Testingfrom index.js</h1>, rootElement);
 
 ReactDOM.render(
-  <HashRouter><h1>Testingfrom index.js</h1></HashRouter>,
+  <BrowserRouter><h1>Testingfrom index.js</h1></BrowserRouter>,
   rootElement
 );
