@@ -241,12 +241,12 @@ const rootElement = document.getElementById("app");
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  </HashRouter>
+</HashRouter>
 
 ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  `<h1>Testingfrom index.js</h1>`,
+  <App />,
   document.getElementById('root')
 );
