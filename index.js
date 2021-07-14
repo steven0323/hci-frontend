@@ -247,6 +247,6 @@ ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  <h1>Testingfrom index.js</h1>,
+  `<h1>Testingfrom index.js</h1>`,
   document.getElementById('root')
 );
