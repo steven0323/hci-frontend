@@ -247,10 +247,10 @@ ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  <HashRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </HashRouter>,
+  
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  
   document.getElementById('root')
 );
