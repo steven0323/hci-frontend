@@ -171,7 +171,7 @@ class App extends React.Component {
       }; 
     if(this.state.Progress==1){
       return (       
-        `<div>
+        <div>
           <MuiThemeProvider>
               <BarField 
                 SetProgress = {this.SetProgress} 
@@ -187,7 +187,7 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-        </div>`
+        </div>
       
       );
     }else if(this.state.Progress==2){
