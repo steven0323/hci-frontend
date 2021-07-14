@@ -1,4 +1,4 @@
-
+/*
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -17,7 +17,7 @@ import Editor from './components/Editor'
 import { HashRouter } from "react-router-dom"
 
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+*/
 
 
 
@@ -237,14 +237,16 @@ class App extends React.Component {
 const rootElement = document.getElementById("app");
 //ReactDOM.render(<h1>Testingfrom index.js</h1>, rosotElement);
 
+<HashRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+  </HashRouter>
+
 ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  <HashRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </HashRouter>,
+  <h1>Testingfrom index.js</h1>,
   document.getElementById('root')
 );
