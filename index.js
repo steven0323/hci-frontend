@@ -206,7 +206,7 @@ class App extends React.Component {
       );
     }else if(this.state.Progress==3){
       return(
-        <div style={{userSelect: "none"}}>
+        `<div style={{userSelect: "none"}}>
           <MuiThemeProvider>
           <BarField 
             SetProgress = {this.SetProgress} 
@@ -227,7 +227,7 @@ class App extends React.Component {
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
           </MuiThemeProvider>
-        </div>
+        </div>`
       );
     }
   }
