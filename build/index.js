@@ -221,10 +221,9 @@ ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  <HashRouter>
-    <React.StrictMode>
-      <h1>Testing from index.js</h1>
-    </React.StrictMode>
-  </HashRouter>,
+  
+   <React.StrictMode>
+      <App />
+   </React.StrictMode>,
   document.getElementById('root')
 );
