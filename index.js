@@ -6,7 +6,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Drawer from '@material-ui/core/Drawer';
 import HighlightModeSelector from './HighlightModeSelector';
 import Video_info from './newdirected/Video_info';
-// import jsondata from './graphFile.json';
+import jsondata from './graphFile.json';
 import BarField from './components/BarField';
 import SearchField from './components/SearchField';
 import LearningMapFrame from './components/LearningMapFrame';
@@ -247,9 +247,11 @@ ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <HashRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </HashRouter>,
   document.getElementById('root')
 );
 
