@@ -9,7 +9,7 @@ import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import AlertDialog from './AlertDialog';
-import HomePageImg from './HomePage3.PNG';
+import HomePageImg from './homepage3.png';
 import AutoSuggestions from './AutoSuggestions';
 
 const styles = ({
