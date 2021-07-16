@@ -6,16 +6,7 @@ import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 import plugins from 'suneditor/src/plugins'
 import { axisLeft } from 'd3-axis';
 import SUNEDITOR from 'suneditor';
-//Start Connect to database----------
-if (!firebase.apps.length) {
-  firebase.initializeApp({
-    databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-  })
-  }else {
-  firebase.app(); // if already initialized, use that one
-  }
 
-const mydatabase = firebase.database();
 
 
 // ex) A command plugin to add "text node" to selection

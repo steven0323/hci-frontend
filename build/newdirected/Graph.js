@@ -20,13 +20,6 @@ import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
 import { axisLeft } from 'd3';
 
 
-if (!firebase.apps.length) {
-    firebase.initializeApp({
-        databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    });
-    }else {
-    firebase.app(); // if already initialized, use that one
-}
 
 
 
@@ -151,19 +144,6 @@ class Graph extends Component {
         this.d3Graph = d3.select(ReactDOM.findDOMNode(this));
         var force = d3.forceSimulation(this.props.data.concept_relationship.nodes);
 
-        firebase.database().ref("/change").on("value", snapshot => {
-            let studentlist = [];
-            snapshot.forEach(snap => {
-                // snap.val() is the dictionary with all your keys/values from the 'students-list' path
-                var data = snap.val();
-                console.log("snap.val=",snap.val());
-                //var data = data.replace("<p>","").replace("</p>","");
-                studentlist.push(data);
-                console.log(data);
-            });
-            this.setState({ studentslist: studentlist });
-        });
-    
     
         force.on('tick', () => {
             force
@@ -187,24 +167,7 @@ class Graph extends Component {
             }
         );
     }
-    readFirebase()
-    {
-        var db = firebase.database();
-        db.ref("/save").on("value",function (snapshot){
-                
-                var studentlist = [];
-                var data_db= snapshot.val().contents.replace("<p>","").replace("</p>","");
-                studentlist.push(data_db);
-                
-            });
-        this.setState(
-            {
-                studentslist:studentlist
-            }
-        );
-        console.log("reading db complete ...")
-            
-    }
+    
     
     
     render() {

@@ -22,6 +22,9 @@ import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 
+
+
+
 /*** * 獲取當前瀏覽器類型 */ 
 function myBrowser() { 
   var userAgent = navigator.userAgent; //取得瀏覽器的userAgent字符串 
