@@ -17,7 +17,6 @@
     "d3-scale-chromatic": "^1.5.0",
     "downshift": "^2.2.3",
     "draft-js": "^0.11.7",
-    "gh-pages": "^3.2.3",
     "jodit-react": "^1.1.1",
     "material-ui": "^0.20.2",
     "mime": "^2.5.2",
@@ -48,6 +47,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.1",
     "file-loader": "^1.1.11",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^7.0.1",
     "style-loader": "^0.22.1",
@@ -55,6 +55,8 @@
     "webpack-cli": "^2.1.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
   },
