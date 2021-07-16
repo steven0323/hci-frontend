@@ -19,6 +19,12 @@
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 	<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 	<div id="root"></div>
-	<script data-plugins="transform-es2015-modules-umd" type="text/babel" src="./build/index.js"></script>
+	<script data-plugins="transform-es2015-modules-umd" type="text/babel" src="./build/index.js">
+		ReactDOM.render(
+		    <h1>Hello, world!</h1>,
+		    document.getElementById('root')
+        	);
+	</script>
+	
 </body>
 </html
