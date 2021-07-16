@@ -31,7 +31,7 @@
     "suneditor-react": "^3.1.2",
     "to-string-loader": "^1.1.5",
     "webpack": "^3.9.1",
-    "webpack-dev-server": "^2.9.5"
+    "webpack-dev-server": "^2.11.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

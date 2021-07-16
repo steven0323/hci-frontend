@@ -162,7 +162,7 @@ class LearningMapFrame extends Component {
         if (method == "add"){
             this.setState({MapConsult: true});
             console.log("SetMapConsult(true!!)");
-        } else if (method =="close") {
+        } else if (method =="dont_ask") {
             console.log("SetMapConsult(false)!!)");
             this.setState({MapConsult:false });
     }
@@ -226,8 +226,12 @@ class LearningMapFrame extends Component {
                     SetBigCircleIndex={this.SetBigCircleIndex}
                 />
                 <MapApprovPanel 
+                    data={this.props.data}
                     MapConsult={this.state.MapConsult}
-                    SetMapConsult={this.SetMapConsult}    
+                    SetMapConsult={this.SetMapConsult}
+                    SetVisJson = {this.props.SetVisJson}
+                    SetNewJson = {this.props.SetNewJson}   
+                    NewJson = {this.props.NewJson}
                 />
                 <Notification open={this.state.Path_ConceptIndex == null} />
             </div>

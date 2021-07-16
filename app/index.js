@@ -94,6 +94,14 @@ class App extends React.Component {
     this.SetSearchKeyword = this.SetSearchKeyword.bind(this);
     this.OpenDrawer = this.OpenDrawer.bind(this);
     this.CloseDrawer = this.CloseDrawer.bind(this);
+    this.SetVisJson = this.CloseDrawer.bind(this);
+    this.SetNewJson = this.SetNewJson.bind(this);
+  }
+  SetVisJson(json){
+    this.setState({VisJson : json});
+  }
+  SetNewJson(json){
+    this.setState({NewJson : json});
   }
 
 
@@ -166,7 +174,6 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-          <Editor />
         </div>
       
       );
@@ -181,7 +188,6 @@ class App extends React.Component {
           />
           <CreatingField SetProgress = {this.SetProgress} SearchKeyword={this.state.SearchKeyword} />
           </MuiThemeProvider>
-          <Editor />
         </div>
       );
     }else if(this.state.Progress==3){
@@ -193,7 +199,12 @@ class App extends React.Component {
             SetMenuOpen = {this.SetMenuOpen} 
             SetSearchHistory={this.SetSearchHistory}
           />
-          <LearningMapFrame data={this.state.VisJson} OpenDrawer={(text) =>this.OpenDrawer(text)}/>
+          <LearningMapFrame data={this.state.VisJson} 
+                            OpenDrawer={(text) =>this.OpenDrawer(text)}
+                            SetVisJson = {this.SetVisJson}
+                            SetNewJson = {this.SetNewJson}
+                            NewJson = {this.state.NewJson}
+          />
           <Dialog
             fullScreen
             open={this.state.drawer}
@@ -201,8 +212,7 @@ class App extends React.Component {
           >
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
-          </MuiThemeProvider>
-          <Editor />
+          </MuiThemeProvider> 
         </div>
       );
     }
