@@ -249,7 +249,7 @@ ReactDOM.render(<App /> ,rootElement);
 ReactDOM.render(
   <HashRouter>
     <React.StrictMode>
-      <App />
+      <h1>Testingfrom index.js</h1>
     </React.StrictMode>
   </HashRouter>,
   document.getElementById('root')
