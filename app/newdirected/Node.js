@@ -223,6 +223,9 @@ class Node extends Component {
             var NodeColor = "#AFC700";
             console.log("fixing line ...");
         }
+        if (this.props.updated == true) {
+            var NodeColor = "#FF0000";
+        }
 
 
         return (

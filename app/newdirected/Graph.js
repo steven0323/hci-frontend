@@ -231,7 +231,7 @@ class Graph extends Component {
             // if-else statement on whether token is matched with the left conceptmap
             try{
                 //var text_seg = cldrSegmentation.wordSplit(data_db);
-                if(data_db.includes(node.name))
+                /*if(data_db.includes(node.name))
                 {
                     
                     return (
@@ -262,9 +262,9 @@ class Graph extends Component {
                 
     
                 }
-                else
+                else*/ if(( this.props.src =="ApprovPanel" ) && (node.group==2) )
                 {
-                    
+                    console.log("group==1!")
                     return (
                
                         <Node
@@ -286,10 +286,34 @@ class Graph extends Component {
                             HighlightNodeText={this.props.HighlightConceptIndex}
                             BigCircleIndex={this.props.BigCircleIndex==null?this.props.Path_ConceptIndex:this.props.BigCircleIndex}
                             SetHightlightWord={this.state.SetHightlightWord}
+                            updated={true}
                         />
                         
                         );
     
+                }else{
+                    return(
+                    <Node
+                        data={node}
+                        name={node.name}
+                        key={"node"+node.index}
+                        // enterNode = {enterNode}
+                        updateNode = {updateNode}
+                        // OpenDrawer = {(text) =>this.props.OpenDrawer(text)}
+                        SetHighlightNodes = {this.SetHighlightNodes}
+                        HighlightNodes = {this.state.HighlightNodes}
+                        
+                        DirectNodes = {this.state.DirectNodes}
+                        HoverConceptIndex = {this.props.HoverConceptIndex}
+                        SetHoverConceptIndex={this.props.SetHoverConceptIndex}
+                        ClearHoverConcept = {this.props.ClearHoverConcept}
+                        Path_ConceptIndex={this.props.Path_ConceptIndex} 
+                        SetPath_ConceptIndex={this.props.SetPath_ConceptIndex}
+                        ConceptRange={this.props.ConceptRange}
+                        HighlightNodeText={this.props.HighlightConceptIndex}
+                        BigCircleIndex={this.props.BigCircleIndex==null?this.props.Path_ConceptIndex:this.props.BigCircleIndex}
+                        SetHightlightWord={this.props.SetHightlightWord}
+                    />)
                 }
             }
             catch (err){
@@ -319,7 +343,8 @@ class Graph extends Component {
                     />
                     
                     );
-            }
+                }
+                
       
             
             });
