@@ -55,8 +55,6 @@
     "webpack-cli": "^2.1.5"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
   },
