@@ -247,8 +247,9 @@ ReactDOM.render(<App /> ,rootElement);
 */
 
 ReactDOM.render(
-  
-  <h1>Testingfrom index.js</h1>,
-  
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
+
