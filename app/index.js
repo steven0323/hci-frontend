@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,8 +14,12 @@ import CreatingField from './components/CreatingField';
 import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
-import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { HashRouter } from "react-router-dom"
+
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+
+
 
 
 
@@ -76,7 +81,9 @@ function beforunload(event) { event = event ? event : (window.event ? window.eve
 
 
 class App extends React.Component {
+  
   constructor(props) {
+    console.log("index .js is been read !!!");
     super(props);
     this.state = {
       MenuOpened : false,
@@ -160,12 +167,8 @@ class App extends React.Component {
 
   render() {
     window.onbeforeunload = function(event) { 
-      return beforunload(event); 
+      return beforunload(event);
       }; 
-      
-
-  
-  
     if(this.state.Progress==1){
       return (       
         <div>
@@ -188,7 +191,8 @@ class App extends React.Component {
       
       );
     }else if(this.state.Progress==2){
-      return (       
+      return ( 
+            
         <div>
           <MuiThemeProvider>
           <BarField 
@@ -229,10 +233,23 @@ class App extends React.Component {
   }
 }
 
+/*
 const rootElement = document.getElementById("app");
-//ReactDOM.render(<h1>Hello, world from index.js</h1>, rootElement);
+//ReactDOM.render(<h1>Testingfrom index.js</h1>, rosotElement);
+
+<HashRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+</HashRouter>
+
+ReactDOM.render(<App /> ,rootElement);
+*/
 
 ReactDOM.render(
-  <HashRouter><App /></HashRouter>,
-  rootElement
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
 );
+
