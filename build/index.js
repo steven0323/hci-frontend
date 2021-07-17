@@ -208,8 +208,10 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-   <React.StrictMode>
-      <h1>Testing from index.js</h1>
-   </React.StrictMode>,
+  <HashRouter>
+    <React.StrictMode>
+      <h1>Testingfrom index.js</h1>
+    </React.StrictMode>
+  </HashRouter>,
   document.getElementById('app')
 );
