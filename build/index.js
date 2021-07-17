@@ -207,23 +207,9 @@ class App extends React.Component {
   }
 }
 
-/*
-const rootElement = document.getElementById("app");
-//ReactDOM.render(<h1>Testingfrom index.js</h1>, rootElement);
-
-<HashRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-</HashRouter>
-
-ReactDOM.render(<App /> ,rootElement);
-*/
-
 ReactDOM.render(
-  
    <React.StrictMode>
-      <App />
+      <h1>Testing from index.js</h1>
    </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('app')
 );

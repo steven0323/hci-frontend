@@ -7,20 +7,18 @@
 		// See https://github.com/facebook/react/issues/20829#issuecomment-802088260
 		if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
 	</script>
-
 	<!-- <link rel="icon" type="image/png" href="molecule.png" /> -->
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-	<!-- 欲插入 React Component 的位置 -->
+	<script src="index.js" type="text/babel"></script>
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>  
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> 
 	<!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+
 	
-	<h1>Testing from index html</h1>
-	<div id="root">
-		<h1>Testing from index js </h1>
-	</div>
-	<script src="index.js" type="text/babel"></script>
+	<!-- 欲插入 React Component 的位置 -->
+	<div id="app"></div>
+	
 </body>
 </html>
