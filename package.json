@@ -2,6 +2,7 @@
   "name": "hci-frontend",
   "version": "1.0.0",
   "description": "refer to (d3.js): http://bl.ocks.org/jose187/4733747",
+  "homepage":"https://hcifrontend.herokuapp.com/",
   "engines": {
     "npm":"6.14.1",
     "node": "6.11.1"
