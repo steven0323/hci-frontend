@@ -1,3 +1,2 @@
 echo .DS_Store >> .gitignore 
 echo package_lock.json >> .gitignore 
-echo dist >> .gitignore 
