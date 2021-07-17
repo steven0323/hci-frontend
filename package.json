@@ -58,6 +58,7 @@
   "scripts": {
     "heroku-postbuild": "npm install && npm run build",
     "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
   },
   "author": "",
   "license": "ISC"
