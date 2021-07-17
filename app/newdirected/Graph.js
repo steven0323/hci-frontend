@@ -211,31 +211,10 @@ class Graph extends Component {
         
         
         var nodes = this.props.data.concept_relationship.nodes.map( (node) => {
-        
-
-            
-            //this.readFirebase();
-
-
-            //console.log(node.name);
-            //console.log("--------");
-            
-            
-            
-            var data_db = this.state.studentslist[0];
-            //console.log(this.state.studentslist);
-
-            //Assuming reading firebase work
-            //var data_db = "Bitcoin a new wave which is a decentralized digital currency, without a central bank or single administrator, a breakout,that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries. Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain. The cryptocurrency was invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto. The currency began use in 2009 when its implementation was released as open-source software.";
-            
-            // if-else statement on whether token is matched with the left conceptmap
             try{
-                //var text_seg = cldrSegmentation.wordSplit(data_db);
                 /*if(data_db.includes(node.name))
                 {
-                    
                     return (
-               
                         <Node
                             data={node}
                             name={node.name}
@@ -256,11 +235,7 @@ class Graph extends Component {
                             BigCircleIndex={this.props.BigCircleIndex==null?this.props.Path_ConceptIndex:this.props.BigCircleIndex}
                             SetHightlightWord={this.state.SetHightlightWord}
                         />
-                        
                         );
-                        
-                
-    
                 }
                 else*/ if(( this.props.src =="ApprovPanel" ) && (node.group==2) )
                 {
@@ -383,7 +358,8 @@ class Graph extends Component {
         //         null
         //     );
         // });
-        
+        console.log("nodes = ", nodes);
+        console.log("links = ", links);
         return (
             <div width={this.props.width} height={this.props.height} style={styles.root} >
                 <div style={styles.Div}>

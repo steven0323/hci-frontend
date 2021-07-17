@@ -73,7 +73,6 @@ class Node extends Component {
         this.NodeRadius = this.NodeRadius.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         //this.handleHighlight = this.handleHighlight.bind(this);
-        //console.log(this.props.data.name);
     }
 
     componentDidMount() {
@@ -87,10 +86,10 @@ class Node extends Component {
             snapshot.forEach(snap => {
                 // snap.val() is the dictionary with all your keys/values from the 'students-list' path
                 var data = snap.val();
-                console.log("snap = ", snap);
+                //console.log("snap = ", snap);
                 var data = data.replace("<p>", "").replace("</p>", "");
                 studentlist.push(data);
-                console.log(data);
+                //console.log(data);
             });
             this.setState({ studentslist: studentlist });
         });
@@ -234,11 +233,8 @@ class Node extends Component {
                 <circle ref="dragMe"
                     onClick={this.handleClick.bind(this)}
                     onMouseOver={this.handleHover.bind(this)}
-
                     // 應該要綁定一個事件是當用戶觸發某個狀態 會從新繪圖 e.g. mouse over
                     //onMouseOver={this.handleHighlight.bind(this)} 
-
-
                     onMouseOut={this.handleMouseOut}
                     r={this.NodeRadius(this.props.data.count, this.props.ConceptRange)}
                     // r = {ScaleDotSize(this.props.data.count)}

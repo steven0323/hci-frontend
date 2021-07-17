@@ -175,6 +175,7 @@ class LearningMapFrame extends Component {
     render() {
         var HighlightConceptTextIndex = this.state.HoverVideoIndex == null ? [] : this.props.data.VideoSequence_ConceptInfo[this.state.HoverConceptIndex][this.state.HoverVideoIndex];
         // console.log("windowheight",window.innerHeight);
+        console.log (this.props.data);
         return (
             <div style={styles.container}>
                 {/* {this.props.data.search_info.key} */}

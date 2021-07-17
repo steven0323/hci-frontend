@@ -94,7 +94,7 @@ class App extends React.Component {
     this.SetSearchKeyword = this.SetSearchKeyword.bind(this);
     this.OpenDrawer = this.OpenDrawer.bind(this);
     this.CloseDrawer = this.CloseDrawer.bind(this);
-    this.SetVisJson = this.CloseDrawer.bind(this);
+    this.SetVisJson = this.SetVisJson.bind(this);
     this.SetNewJson = this.SetNewJson.bind(this);
   }
   SetVisJson(json){

@@ -80,7 +80,7 @@ class MapApprovPanel extends Component {
     constructor(props) {
         super(props);
         this.CloseOnClick = this.CloseOnClick.bind(this);
-        console.log("before getting, this.props.NewJson == ", this.props.NewJson);
+        //console.log("before getting, this.props.NewJson == ", this.props.NewJson);
     //for getting new json---------------------------------
         var tmp=this;
         fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
@@ -124,7 +124,6 @@ class MapApprovPanel extends Component {
     render() {
 
         if(this.props.MapConsult==true){
-            console.log(this.props.NewJson);
             return (
                 <div style = {styles.OuterContainer}>
                     {/* <Paper style={styles.paper2} elevation={13}> */}
@@ -137,7 +136,8 @@ class MapApprovPanel extends Component {
                     </div>
                     <div style = {styles.paper2_UpperContainer}>
                         <div style={styles.content}>
-                            <button className="btn btn-primary btn-lg m-5">Approve</button>
+                            <button onClick = {()=>this.props.SetVisJson(this.props.NewJson)}
+                                    className="btn btn-primary btn-lg m-5">Approve</button>
                             <button onClick = {this.CloseOnClick}
                                     className="btn btn-danger btn-lg m-5">Disprove</button>
                         </div>
