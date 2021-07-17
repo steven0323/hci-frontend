@@ -208,10 +208,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <HashRouter>
-    <React.StrictMode>
-      <h1>Testingfrom index.js</h1>
-    </React.StrictMode>
-  </HashRouter>,
+  <h1>if this shit dont work,i will smash the monitor !!!</h1>,
   document.getElementById('app')
 );
