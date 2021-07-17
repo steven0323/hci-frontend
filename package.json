@@ -1,7 +1,7 @@
 {
   "name": "hci-frontend",
   "version": "1.0.0",
-  "homepage":"https://hcifrontend.herokuapp.com/",
+  "homepage":".",
   "description": "refer to (d3.js): http://bl.ocks.org/jose187/4733747",
   "engines": {
     "npm":"6.14.1",
@@ -58,10 +58,10 @@
     "image-webpack-loader": "^7.0.1",
     "style-loader": "^0.22.1",
     "url-loader": "^1.1.2",
-    "webpack-cli": "^2.1.5"
+    "webpack-cli": "^2.1.5" 
   },
   "scripts": {
-    "heroku-prebuild": "npm install && npm run build",
+    "heroku-postbuild": "npm install && npm run build",
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
   },
