@@ -207,6 +207,6 @@ class App extends React.Component {
   }
 }
 ReactDOM.render(
-  <h1>if this shit dont work,i will smash the monitor !!!</h1>,
-  document.getElementById('app')
+  <App />,
+  document.getElementById('root')
 );
