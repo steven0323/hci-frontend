@@ -17,7 +17,16 @@
 	<script src="https://unpkg.com/babel-standalone@6.4.4/babel.js"></script>
 	<!-- <script type="text/babel" data-presets="es2015,es2016,es2017" src="index.js"></script> -->
 	<!-- 欲插入 React Component 的位置 "heroku-postbuild": "npm install && npm run build",-->
-	<div id="app"></div>
-	<script type="text/babel" src="index.js"></script>
+	<div id="root"></div>
+	
+	<script type="text/babel">
+		let element = <h1>Hello, world!</h1>
+
+		// 使用ReactDOM.render把剛建立的物件element插入目標DOM中
+		ReactDOM.render(
+		element,
+		document.getElementById('root')
+		);
+	</script>
 </body>
 </html>
