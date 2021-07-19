@@ -22,31 +22,6 @@ import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 
-
-function storedata() {
-  var firebaseConfig = {
-    apiKey: "AIzaSyD5ro8Oj_EHuFweJR3bywJCO49egETQp7g",
-    authDomain: "test-7916a.firebaseapp.com",
-    databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "test-7916a",
-    storageBucket: "test-7916a.appspot.com",
-    messagingSenderId: "931195594829",
-    appId: "1:931195594829:web:65c637f9dc54e245d4d404",
-    measurementId: "G-T5RH81V2MG"
-    };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  var db = firebase.firestore();
-  db.collection("movies").doc("Harry Potter").set(
-    {
-      name:"Harry",
-      date:"2010",
-    }
-  )
-  console.log("hit!!")
-}
-
 /*** * 獲取當前瀏覽器類型 */ 
 function myBrowser() { 
   var userAgent = navigator.userAgent; //取得瀏覽器的userAgent字符串 
@@ -233,25 +208,12 @@ class App extends React.Component {
   }
 }
 
-/*
-const rootElement = document.getElementById("app");
-//ReactDOM.render(<h1>Testingfrom index.js</h1>, rootElement);
-
-<HashRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-</HashRouter>
-
-ReactDOM.render(<App /> ,rootElement);
-*/
 
 ReactDOM.render(
   <HashRouter>
     <React.StrictMode>
-      <h1>Testingfrom index.js</h1>
+    <h1>if this shit dont work,i will smash the monitor !!!</h1>
     </React.StrictMode>
   </HashRouter>,
-  document.getElementById('root')
+  document.getElementById('app')
 );
-

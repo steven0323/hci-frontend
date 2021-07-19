@@ -83,7 +83,7 @@ class MapApprovPanel extends Component {
         console.log("before getting, this.props.NewJson == ", this.props.NewJson);
     //for getting new json---------------------------------
         var tmp=this;
-        fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
+        fetch('https://appbackend-hci.herokuapp.com/GetJson/')     //跟後端連結去getJson
         .then(function (res) {
         //    console.log(res.json());
             return res.json();

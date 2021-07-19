@@ -9,7 +9,7 @@ import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import AlertDialog from './AlertDialog';
-import HomePageImg from './homepage3.png';
+import HomePageImg from './homepage2.png';
 import AutoSuggestions from './AutoSuggestions';
 
 const styles = ({
@@ -91,6 +91,8 @@ class SearchField extends Component {
         this.props.SetSearchKeyword(keyword);
     }
     Go_CheckExistedMap(keyword){
+        console.log("here .....")
+        console.log(keyword);
         if (keyword=="bitcoin introduction"){
             console.log("here!!!!XXXXbitcoin")
             var tmp = this;
