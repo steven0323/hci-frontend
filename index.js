@@ -14,8 +14,7 @@ import CreatingField from './components/CreatingField';
 import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
-import { HashRouter } from "react-router-dom"
-
+import BrowserRouter from 'react-router-dom/BrowserRouter'
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
@@ -210,10 +209,8 @@ class App extends React.Component {
 
 
 ReactDOM.render(
-  <HashRouter>
-    <React.StrictMode>
-    <h1>if this shit dont work,i will smash the monitor !!!</h1>
-    </React.StrictMode>
-  </HashRouter>,
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+     <h1>this is last try of today ....</h1>
+   </BrowserRouter>,
   document.getElementById('app')
 );

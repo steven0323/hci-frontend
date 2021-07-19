@@ -8,36 +8,9 @@
 		if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
 	</script>
 
-	
-
-    
-
 	<!-- <link rel="icon" type="image/png" href="molecule.png" /> -->
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
-	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>	
-	<!-- Add SDKs for Firebase products that you want to use
-	https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
-	<script language="javascript">
-		
-		function storedata() {
-			if (!firebase.apps.length) {
-			firebase.initializeApp({
-				databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-			});
-			}else {
-			firebase.app(); // if already initialized, use that one
-			}
-			const mydatabase = firebase.database();
-			mydatabase.ref('/').set({a:123});
-			console.log("hit!")	
-		}
-	</script>
-
 </head>
 <body>
 	
