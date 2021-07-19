@@ -61,7 +61,8 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC"
