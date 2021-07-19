@@ -209,7 +209,7 @@ class App extends React.Component {
 
 
 ReactDOM.render(
-  <HashRouter base="/">
+  <HashRouter basename={process.env.PUBLIC_URL}>
         <h1>reading from index.js ...</h1>
   </HashRouter>,
   document.getElementById('app')
