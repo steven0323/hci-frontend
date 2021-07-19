@@ -212,5 +212,5 @@ ReactDOM.render(
   <HashRouter basename={process.env.PUBLIC_URL}>
         <h1>reading from index.js ...</h1>
   </HashRouter>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
