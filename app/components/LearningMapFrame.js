@@ -160,8 +160,18 @@ class LearningMapFrame extends Component {
     }
     SetMapConsult(method){
         if (method == "add"){
+            /*     正式的讓後端去取db資料，算出新的Json檔
+            fetch('http://localhost:8001/MapPreview/<Keyword>')     //跟後端連結去getJson
+            .then(function (res) {
+            //    console.log(res.json());
+                return res.json();
+            }).then(function(myJson) {
+                this.props.SetNewJson(myJson);
+                return myJson;
+            });
+            */
             this.setState({MapConsult: true});
-            console.log("SetMapConsult(true!!)");
+            
         } else if (method =="dont_ask") {
             console.log("SetMapConsult(false)!!)");
             this.setState({MapConsult:false });
@@ -207,11 +217,13 @@ class LearningMapFrame extends Component {
                     />
                 </div>
                 <div style={styles.Div}>
-                    {
-                        <Editor content = {this.state.content}
-                                SetMapConsult = {this.SetMapConsult}
-                        />
-                    }
+                    <Editor content = {this.state.content}
+                            SetMapConsult = {this.SetMapConsult}
+                            SetNewJson = {this.props.SetNewJson}
+                    />
+                    <button onClick={()=>this.SetMapConsult("add")}
+                            className="btn btn-primary btn-lg m-5">Show New Map</button>
+                
                     
                 </div>
                 <ConceptDetailPanel

@@ -72,6 +72,7 @@ class MenuDrawer extends Component {
             // console.log("myJson",myJson.search_info);
             tmp.props.SetMenuClose();
             tmp.props.SetProgress(3,myJson);
+            //tmp.props.SetNewJson(myJson);
             return myJson;
         });
     }

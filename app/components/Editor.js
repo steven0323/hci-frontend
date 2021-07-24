@@ -156,9 +156,18 @@ class Editor extends Component {
   }
   save(){
     //console.log("SetMapConsult(add)");
-    console.log(this.props);
-    this.props.SetMapConsult("add");
-    mydatabase.ref('/save').set({contents});
+    var tmp = this;
+    fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
+    .then(function (res) {
+        //console.log(res.json());
+        return res.json();
+    }).then(function(myJson) {
+        tmp.props.SetNewJson(myJson);
+        return myJson;
+    });
+    //console.log(this.props);
+    //this.props.SetMapConsult("add");
+    //mydatabase.ref('/save').set({contents});
   }
 
     render() {

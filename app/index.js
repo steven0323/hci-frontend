@@ -101,6 +101,7 @@ class App extends React.Component {
     this.setState({VisJson : json});
   }
   SetNewJson(json){
+    console.log("NewJson setted from ", this.state.NewJson, " to ", json);
     this.setState({NewJson : json});
   }
 
@@ -113,7 +114,8 @@ class App extends React.Component {
     else{
       this.setState({
         Progress: progress,
-        VisJson : json
+        VisJson : json,
+        NewJson : json
       });
     }
   }
@@ -166,6 +168,7 @@ class App extends React.Component {
                 SetSearchHistory={this.SetSearchHistory}
                 />
               <MenuDrawer  
+                SetNewJson = {this.SetNewJson}
                 open = {this.state.MenuOpened} 
                 SetProgress = {this.SetProgress}  
                 SearchHistory={this.state.SearchHistory} 

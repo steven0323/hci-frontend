@@ -123,6 +123,7 @@ const updateGraph = (selection) => {
     .call(zoom);
 };
 
+
 function CheckDirectNodes(index,BFSinput) {
     var ans=[]
     for (var i in BFSinput) {
@@ -163,19 +164,19 @@ class Graph extends Component {
             });
             this.setState({ studentslist: studentlist });
         });
-    
-    
+
+        
         force.on('tick', () => {
             force
-            .force("charge", d3.forceManyBody().strength(-700))
+            .force("charge", d3.forceManyBody().strength(-50))
             .force("link", d3.forceLink(this.props.data.concept_relationship.links).distance(function(d) {return (1/((d.similarity+0.5))*200);}).strength(0.1))
             .force("center", d3.forceCenter().x(this.props.width*0.6 / 2).y(this.props.height / 2))
             // .force("collide", d3.forceCollide([5]).iterations([5]))
-
             // const node = d3.selectAll('g').call(drag);
             this.d3Graph.call(updateGraph)
         });
     }
+    
     SetHighlightNodes(index){
         var ans = CheckDirectNodes(index,this.props.data.BFSinput[index]);
         // console.log("hhh",this.props.data.highlight_nodes[index]);
@@ -208,8 +209,7 @@ class Graph extends Component {
     
     
     render() {
-        
-        
+
         var nodes = this.props.data.concept_relationship.nodes.map( (node) => {
             try{
                 /*if(data_db.includes(node.name))
@@ -319,7 +319,7 @@ class Graph extends Component {
                     
                     );
                 }
-                
+               
       
             
             });

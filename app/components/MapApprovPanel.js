@@ -80,9 +80,10 @@ class MapApprovPanel extends Component {
     constructor(props) {
         super(props);
         this.CloseOnClick = this.CloseOnClick.bind(this);
+        this.ApproveClicked = this.ApproveClicked.bind(this);
         //console.log("before getting, this.props.NewJson == ", this.props.NewJson);
     //for getting new json---------------------------------
-        var tmp=this;
+        /*var tmp=this;
         fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
         .then(function (res) {
         //    console.log(res.json());
@@ -93,11 +94,24 @@ class MapApprovPanel extends Component {
           });
         //this.props.SetNewJson(tmp);
         console.log("this.props.NewJson == ", this.props.NewJson);
-        }
+        */
+    }
+    ApproveClicked(){
+        fetch('http://localhost:8001/Update/<Keyword>')     //跟後端連結去getJson
+            .then(function (res) {
+            //    console.log(res.json());
+                return res.json();
+            }).then(function(myJson) {
+                this.props.SetNewJson(myJson);
+                this.props.SetVisJson(myJson);
+                return myJson;
+            });
+    }
+        
     componentDidUpdate(prevProps) {
         // 常見用法（別忘了比較 prop）：
         if (this.props !== prevProps) {
-          this.forceUpdate();
+              this.forceUpdate();
         }
       }
       componentWillMount() {
@@ -122,7 +136,7 @@ class MapApprovPanel extends Component {
         this.props.SetMapConsult("dont_ask");
     }
     render() {
-
+        //console.log("this.props.NewJson = ", this.props.NewJson );
         if(this.props.MapConsult==true){
             return (
                 <div style = {styles.OuterContainer}>
@@ -136,7 +150,7 @@ class MapApprovPanel extends Component {
                     </div>
                     <div style = {styles.paper2_UpperContainer}>
                         <div style={styles.content}>
-                            <button onClick = {()=>this.props.SetVisJson(this.props.NewJson)}
+                            <button onClick = {this.ApproveClicked}
                                     className="btn btn-primary btn-lg m-5">Approve</button>
                             <button onClick = {this.CloseOnClick}
                                     className="btn btn-danger btn-lg m-5">Disprove</button>
