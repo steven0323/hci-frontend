@@ -42,6 +42,11 @@ class Card extends Component {
         this.ref.current.setContents(this.state.content);
         this.setState({editing:false});
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.id !== prevProps.id) {        
+            this.setState({content:this.props.content});
+        }
+      }
     render(){
         if(this.state.editing==false){
             return (

@@ -197,7 +197,6 @@ class Editor extends Component {
                     getSunEditorInstance={this.getSunEditorInstance}
                     onFocus = {this.onFocus}
                     onBlur = {this.onBlur}
-                    setContents = {"hot end 3d print stl file"}
                     SetMapConsult={this.props.SetMapConsult}
                      />
     </div>
