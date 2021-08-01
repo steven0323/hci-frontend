@@ -154,6 +154,9 @@ class Editor extends Component {
         }
       }      
   }
+  componentDidMount(){
+    console.log(this.ref);
+  }
   save(){
     //console.log("SetMapConsult(add)");
     var tmp = this;
@@ -173,11 +176,10 @@ class Editor extends Component {
     render() {
       return (
         <div>
-          {this.state.content }
         <SunEditor 
                         SetMapConsult = {this.props.SetMapConsult}
                         setOptions = {{
-                          width:(window.innerWidth-(window.innerWidth-50)/2)-600,
+                          width:(window.innerWidth/3),
                           height:window.innerHeight-100,
                           plugins: [plugin_command],
                           buttonList:[

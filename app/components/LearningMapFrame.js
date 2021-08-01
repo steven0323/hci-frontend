@@ -14,6 +14,7 @@ import ConceptDetailPanel from './ConceptDetailPanel';
 import MapApprovPanel from './MapApprovPanel';
 import Notification from './Notification';
 import Editor from './Editor'
+import Cards from './Cards'
 const styles = ({
     container: {
         // justifyContent: 'center',
@@ -29,6 +30,12 @@ const styles = ({
         marginLeft: 10
 
     },
+    Editor: {
+        // width: 200,
+        // height:800,
+        position: 'fixed',
+        bottom:10,
+      },
     LeftField: {
         // display:'flex',
         // width: 900,
@@ -107,8 +114,6 @@ class LearningMapFrame extends Component {
         this.setState({content:" "});
         console.log("ClearHoverConcept");
     }
-
-
     // Adding by YHT
     SetHightlightWord(word) {
 
@@ -216,16 +221,21 @@ class LearningMapFrame extends Component {
                         SetHightlightWord={this.SetHightlightWord}
                     />
                 </div>
-                <div style={styles.Div}>
+                
+                <div>
+                    <div>
+                    <Cards />
+                    </div>
+                    <div style = {styles.Editor}>
                     <Editor content = {this.state.content}
                             SetMapConsult = {this.SetMapConsult}
                             SetNewJson = {this.props.SetNewJson}
                     />
-                    <button onClick={()=>this.SetMapConsult("add")}
-                            className="btn btn-primary btn-lg m-5">Show New Map</button>
-                
-                    
+                    {/*<button onClick={()=>this.SetMapConsult("add")}
+                            className="btn btn-primary btn-lg m-5">Show New Map</button>*/}
+                    </div>  
                 </div>
+
                 <ConceptDetailPanel
                     data={this.props.data}
                     Path_ConceptIndex={this.state.Path_ConceptIndex}

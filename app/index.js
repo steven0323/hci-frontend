@@ -14,7 +14,7 @@ import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
 import Editor from './components/Editor'
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import Cards from './components/Cards';
 
 
 
@@ -177,6 +177,7 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
+          <Cards />
         </div>
       
       );
