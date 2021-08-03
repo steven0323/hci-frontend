@@ -159,6 +159,8 @@ class Editor extends Component {
   }
   save(){
     //console.log("SetMapConsult(add)");
+    //console.log(this.ref.current);
+    this.props.SetNewCardContent(this.ref.current.getText());
     var tmp = this;
     fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
     .then(function (res) {

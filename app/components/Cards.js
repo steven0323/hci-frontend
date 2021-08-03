@@ -13,6 +13,12 @@ class Cards extends Component {
         };
         this.handleDelete=this.handleDelete.bind(this);
         this.handleEdit=this.handleEdit.bind(this);      
+        this.addCard=this.addCard.bind(this);      
+    }
+    addCard(content){
+        let cards = this.state.cards;
+        cards.push({id:cards.length+1, content: content});
+        this.setState({cards});
     }
     handleDelete(cardId) {
         const cards = this.state.cards.filter(c=>c.id!==cardId);
@@ -26,6 +32,15 @@ class Cards extends Component {
     handleSave(cardId){
         console.log("handleSave", cardId);
     }
+    componentDidUpdate(prevProps,prevState) {
+        // 常見用法（別忘了比較 prop）：
+        if (this.props.newCardContent !== prevProps.newCardContent) {
+              this.addCard(this.props.newCardContent);
+        };
+        if (this.state!== prevState) {
+            console.log("this.state = ", this.state);
+        }
+      }
     render() { 
         return (
             <div>

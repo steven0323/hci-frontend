@@ -61,10 +61,12 @@ class LearningMapFrame extends Component {
             content:[
                 " "
             ],
+            newCardContent:false,
             MapConsult: false,
             };
         this.SetHoverConceptIndex = this.SetHoverConceptIndex.bind(this);
         this.SetMapConsult = this.SetMapConsult.bind(this);
+        this.SetNewCardContent = this.SetNewCardContent.bind(this);
         this.SetHoverVideoIndex = this.SetHoverVideoIndex.bind(this);
         this.SetPopoverIndexes = this.SetPopoverIndexes.bind(this);
         this.SetPath_ConceptIndex = this.SetPath_ConceptIndex.bind(this);
@@ -187,6 +189,12 @@ class LearningMapFrame extends Component {
             BigCircleIndex: index
         });
     }
+    
+    SetNewCardContent(content) {
+        this.setState({
+            newCardContent: content
+        });
+    }
     render() {
         var HighlightConceptTextIndex = this.state.HoverVideoIndex == null ? [] : this.props.data.VideoSequence_ConceptInfo[this.state.HoverConceptIndex][this.state.HoverVideoIndex];
         // console.log("windowheight",window.innerHeight);
@@ -224,12 +232,13 @@ class LearningMapFrame extends Component {
                 
                 <div>
                     <div>
-                    <Cards />
+                    <Cards newCardContent = {this.state.newCardContent}/>
                     </div>
                     <div style = {styles.Editor}>
                     <Editor content = {this.state.content}
                             SetMapConsult = {this.SetMapConsult}
                             SetNewJson = {this.props.SetNewJson}
+                            SetNewCardContent = {this.SetNewCardContent}
                     />
                     {/*<button onClick={()=>this.SetMapConsult("add")}
                             className="btn btn-primary btn-lg m-5">Show New Map</button>*/}
@@ -247,6 +256,8 @@ class LearningMapFrame extends Component {
                     HighlightConceptTextIndex={HighlightConceptTextIndex}
                     BigCircleIndex={this.state.BigCircleIndex}
                     SetBigCircleIndex={this.SetBigCircleIndex}
+                    
+                    SetNewCardContent = {this.SetNewCardContent}
                 />
                 <MapApprovPanel 
                     data={this.props.data}

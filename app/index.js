@@ -177,7 +177,6 @@ class App extends React.Component {
                 />
               <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
-          <Cards />
         </div>
       
       );
