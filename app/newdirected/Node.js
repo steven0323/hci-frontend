@@ -139,7 +139,7 @@ class Node extends Component {
 
     handleHover(i) {
 
-        var data_db = this.state.studentslist[0];
+        /*var data_db = this.state.studentslist[0];
         var revised_string = '<strong>';
         if (data_db.includes(this.props.data.name)) {
             //revised_string = revised_string.concat(this.props.data.name, '</strong>');
@@ -154,14 +154,14 @@ class Node extends Component {
             this.props.SetHighlightNodes(this.props.data.index);    
             console.log("node does not exist in content");
         }
-        
+        */
         console.log("[hover],conceptMapNode", ",", this.props.data.name, ",", this.props.data.index);
         // console.log(ReactDOM.findDOMNode(this));
 
         //--------------------
         console.log("this.props.data.name = ", this.state.studentslist);
         //added 
-        
+        console.log("hover mode!!");
         this.props.SetHoverConceptIndex(this.props.data.index);
         this.props.SetHighlightNodes(this.props.data.index);
 
