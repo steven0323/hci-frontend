@@ -43,6 +43,7 @@ class Cards extends Component {
             <div>
                 {this.state.cards.map(card =>
                     (<Card content={card.content}
+                            key={card.id}
                             id = {card.id}
                             onDelete={this.handleDelete}
                             onEdit={this.handleEdit} 

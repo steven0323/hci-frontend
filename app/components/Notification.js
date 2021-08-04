@@ -41,7 +41,7 @@ class Notification extends Component {
                 <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 open={this.props.open}
                 autoHideDuration={6000}

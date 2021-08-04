@@ -176,12 +176,13 @@ class Editor extends Component {
   }
 
     render() {
+      var width = (window.innerWidth/3)+"px";
       return (
         <div>
-        <SunEditor 
+        <SunEditor      
+                        width = '600px'
                         SetMapConsult = {this.props.SetMapConsult}
                         setOptions = {{
-                          width:(window.innerWidth/3),
                           height:window.innerHeight-100,
                           plugins: [plugin_command],
                           buttonList:[

@@ -78,10 +78,10 @@ class Card extends Component {
         else{
             return(
                 <div>
-                    <SunEditor 
+                    <SunEditor  width="400px"
                                 getSunEditorInstance={this.getSunEditorInstance}
                                 setOptions ={{buttonList:[],
-                                                width:70}}
+                                                }}
                                 setContents = {this.state.content}
                                 disable={true}
                     />

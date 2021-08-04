@@ -160,8 +160,10 @@ class Node extends Component {
 
         //--------------------
         console.log("this.props.data.name = ", this.state.studentslist);
-        //---------------------
-
+        //added 
+        
+        this.props.SetHoverConceptIndex(this.props.data.index);
+        this.props.SetHighlightNodes(this.props.data.index);
 
     };
 

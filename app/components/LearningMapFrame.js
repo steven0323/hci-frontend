@@ -35,6 +35,7 @@ const styles = ({
         // height:800,
         position: 'fixed',
         bottom:10,
+        right:10
       },
     LeftField: {
         // display:'flex',
@@ -97,10 +98,9 @@ class LearningMapFrame extends Component {
         // console.log("[hover] conceptMapNode",i);
         // Adding concept panel words highlighting
         console.log("word = ", word);
+        console.log("i = ",i);
         this.setState({
-            HoverConceptIndex: i
-        });
-        this.setState({
+            HoverConceptIndex: i,
             HightlightWord: word
         });
         this.setState({
@@ -195,7 +195,14 @@ class LearningMapFrame extends Component {
             newCardContent: content
         });
     }
+    componentDidUpdate(prevState){
+        if(this.state.HoverConceptIndex!==prevState.HoverConceptIndex){
+            console.log("prevConceptIndex = ",prevState.HoverConceptIndex," >>> ", this.state.HoverConceptIndex);
+        }
+    }
+
     render() {
+        console.log(this.props.data.VideoSequence_ConceptInfo);
         var HighlightConceptTextIndex = this.state.HoverVideoIndex == null ? [] : this.props.data.VideoSequence_ConceptInfo[this.state.HoverConceptIndex][this.state.HoverVideoIndex];
         // console.log("windowheight",window.innerHeight);
         console.log (this.props.data);
