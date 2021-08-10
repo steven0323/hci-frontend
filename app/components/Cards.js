@@ -1,6 +1,12 @@
+import { Hidden } from '@material-ui/core';
 import React, { Component } from 'react';
 import Card from './Card'
+import RelatedVideosPanel from './RelatedVideosPanel';
 
+const styles = ({
+    ul: {overflow:scroll,
+    }
+});
 class Cards extends Component {
     constructor(props){
         super(props);
@@ -40,7 +46,11 @@ class Cards extends Component {
       }
     render() { 
         return (
-            <div>
+            <div className="relative"
+                    style={styles.ul}>
+                        {
+                            //<button onClick={()=>this.addCard("HI")}>Fill Card</button>
+                        }
                 {this.state.cards.map(card =>
                     (<Card content={card.content}
                             key={card.id}
@@ -48,7 +58,7 @@ class Cards extends Component {
                             onDelete={this.handleDelete}
                             onEdit={this.handleEdit} 
                             onSave={this.handleSave}/>
-                        ))}
+                ))}
             </div>
         );
     }

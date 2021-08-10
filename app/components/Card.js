@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+
+import IconButton from '@material-ui/core/IconButton';
 
 /* editor component */
 import SunEditor,{buttonList} from 'suneditor-react';
@@ -10,9 +13,12 @@ class Card extends Component {
         this.getSunEditorInstance = this.getSunEditorInstance.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.ThumbOnClick = this.ThumbOnClick.bind(this);
         this.ref = React.createRef();
         this.state = {editing:false,
-                        content:this.props.content};
+                        content:this.props.content,
+                    thumbsCnt:0,
+                    thumbColor:"disabled"};
         }
     getSunEditorInstance(sunEditor){
         this.ref.current = sunEditor;
@@ -47,7 +53,25 @@ class Card extends Component {
             this.setState({content:this.props.content});
         }
       }
+    ThumbOnClick(){
+        if(this.state.thumbColor =="disabled"){
+            var thumbColor ="primary";
+            var thumbsCnt = this.state.thumbsCnt+1;
+        }else{
+            var thumbColor ="disabled";
+            var thumbsCnt = this.state.thumbsCnt-1;
+        }
+        this.setState({thumbColor,thumbsCnt});
+    }
+    renderThumbCnt(){
+        if(this.state.thumbsCnt==0){
+            return null;
+        }else{
+            return this.state.thumbsCnt;
+        }
+    }
     render(){
+
         if(this.state.editing==false){
             return (
                 <div>
@@ -59,6 +83,11 @@ class Card extends Component {
                                 disable={true}
                                 setDefaultStyle="font-family: Hahmlet; font-size:15px"
                     />
+                    
+                    <IconButton color="inherit" aria-label="Home">
+                        {this.renderThumbCnt()}
+                        <ThumbUpIcon color={this.state.thumbColor} onClick={this.ThumbOnClick}/>
+                    </IconButton>
                     <button
                         onClick={this.handleEdit}
                         className="btn btn-primary btn-sm"
@@ -85,6 +114,9 @@ class Card extends Component {
                                 setContents = {this.state.content}
                                 disable={true}
                     />
+                    <IconButton color="inherit" aria-label="Home">
+                    <ThumbUpIcon color={this.state.thumbColor} onClick={this.ThumbOnClick}/>
+                    </IconButton>
                     <button
                         onClick={this.handleSave}
                         className="btn btn-primary btn-sm"
