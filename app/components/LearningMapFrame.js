@@ -35,7 +35,7 @@ const styles = ({
         // height:800,
         position: 'fixed',
         bottom:10,
-        right:10
+        right:20
       },
     LeftField: {
         // display:'flex',
@@ -64,7 +64,11 @@ class LearningMapFrame extends Component {
             ],
             newCardContent:false,
             MapConsult: false,
+            cardEditing:false,
+            editingCardId:"",
+            editorContent:""
             };
+        this.SetEditorContent = this.SetEditorContent.bind(this);
         this.SetHoverConceptIndex = this.SetHoverConceptIndex.bind(this);
         this.SetMapConsult = this.SetMapConsult.bind(this);
         this.SetNewCardContent = this.SetNewCardContent.bind(this);
@@ -75,6 +79,14 @@ class LearningMapFrame extends Component {
         this.ClearHoverConcept = this.ClearHoverConcept.bind(this);
         // Adding words hightlighting functions by YHT
         this.SetHightlightWord = this.SetHightlightWord.bind(this);
+        this.SetCardEdit = this.SetCardEdit.bind(this);
+    }
+    SetEditorContent(content){
+        this.setState({editorContent:content});
+    }
+    SetCardEdit(bool, cardId){
+        this.setState({cardEditing:bool,
+                        editingCardId:cardId});
     }
     componentWillMount() {
         console.log("[graph]", ",", this.props.data.search_info.key);
@@ -239,13 +251,24 @@ class LearningMapFrame extends Component {
                 
                 <div>
                     <div>
-                    <Cards newCardContent = {this.state.newCardContent}/>
+                    <Cards 
+                            SetEditorContent = {this.SetEditorContent}
+                            newCardContent = {this.state.newCardContent}
+                            searchInfo = {this.props.data.search_info.key}
+                            SetCardEdit = {this.SetCardEdit}
+                            editingCardId = {this.state.editingCardId}
+                            cardEditing = {this.state.cardEditing}/>
                     </div>
                     <div style = {styles.Editor}>
                     <Editor content = {this.state.content}
                             SetMapConsult = {this.SetMapConsult}
                             SetNewJson = {this.props.SetNewJson}
+                            searchInfo = {this.props.data.search_info.key}
                             SetNewCardContent = {this.SetNewCardContent}
+                            SetCardEdit = {this.SetCardEdit}
+                            cardEditing = {this.state.cardEditing}
+                            editingCardId = {this.state.editingCardId}
+                            editorContent={this.state.editorContent}
                     />
                     {/*<button onClick={()=>this.SetMapConsult("add")}
                             className="btn btn-primary btn-lg m-5">Show New Map</button>*/}
@@ -263,8 +286,9 @@ class LearningMapFrame extends Component {
                     HighlightConceptTextIndex={HighlightConceptTextIndex}
                     BigCircleIndex={this.state.BigCircleIndex}
                     SetBigCircleIndex={this.SetBigCircleIndex}
-                    
+                    SetProgress = {this.props.SetProgress} 
                     SetNewCardContent = {this.SetNewCardContent}
+                    SetVideoId = {this.props.SetVideoId} 
                 />
                 <MapApprovPanel 
                     data={this.props.data}

@@ -128,6 +128,8 @@ class RelatedVideosPanel extends Component {
     }
     videoClick(vid,index){
         console.log("[click],RelatedVideos",",",vid,",",index);
+        this.props.SetVideoId(vid);
+        this.props.SetProgress(4);
     }
     handleHoverOut(){
         this.props.SetHoverVideoIndex(null);
@@ -212,21 +214,22 @@ class RelatedVideosPanel extends Component {
             this.props.data.videos_id.map( ([vid,cnnt],index) => {LikesList.push(video_info[vid].likeCount);});
             var likesRange=[Math.min(...LikesList),Math.max(...LikesList)];
             var flag=0;
+
             var ShowVideoLinks = this.props.data.videos_id.map( ([vid,cnnt],index) => {
                 // console.log(index,vid,vlist.indexOf(vid));
                 // console.log("video_info[vid].userFeedbackScore",video_info[vid].userFeedbackScore);
                 return(
                     <g key={"PopoverNode"+index}>
                         <Tooltip title={<div style={this.state.tooltip_open?styles.videotooptip_label2:styles.videotooptip_label1}
-                        enterTouchDelay={0}
+                            enterTouchDelay={0}>
+                            {/* {this.props.video_info[vid].title.length>38?this.props.video_info[vid].title.substring(0,38)+"...":this.props.video_info[vid].title} */}
+                            {this.state.tooltip_open?this.props.video_info[vid].title+"...":this.props.video_info[vid].title}
+                            </div>} 
+                                placement="top"
+                                open={this.state.tooltip_open?true:null}
                         >
-                        {/* {this.props.video_info[vid].title.length>38?this.props.video_info[vid].title.substring(0,38)+"...":this.props.video_info[vid].title} */}
-                        {this.state.tooltip_open?this.props.video_info[vid].title+"...":this.props.video_info[vid].title}
-                        </div>} 
-                            placement="top"
-                            open={this.state.tooltip_open?true:null}
-                            >
-                        <a xlinkHref={"https://www.youtube.com/watch?v="+vid} target="_blank" >
+                        {/*<a xlinkHref={"https://www.youtube.com/watch?v="+vid} target="_blank" >*/}
+                        <a>
                             <circle key={vid} 
                                 cx={center+this.Location(index,numNodes,83)[0]} 
                                 cy={center+this.Location(index,numNodes,83)[1]} 

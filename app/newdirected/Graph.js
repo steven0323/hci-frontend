@@ -209,7 +209,7 @@ class Graph extends Component {
     
     
     render() {
-
+        console.log("nodes = ", this.props.data.concept_relationship.nodes);
         var nodes = this.props.data.concept_relationship.nodes.map( (node) => {
             try{
                 /*if(data_db.includes(node.name))
@@ -362,8 +362,7 @@ class Graph extends Component {
         console.log("links = ", links);
         return (
             <div width={this.props.width} height={this.props.height} style={styles.root} >
-                <div style={styles.Div}>
-                    <svg className="graph" width={(this.props.width)/2} height={this.props.height} style={styles.root2}>
+                    <svg className="graph" width={(this.props.width)} height={this.props.height} style={styles.root2}>
                         <g className='graphContainer'>
                         <defs>
                         <marker id="markerArrow" viewBox="0 -4 10 10" markerWidth="7" markerHeight="7" refX="28" refY="0" orient="auto" xoverflow="visible" >
@@ -392,7 +391,7 @@ class Graph extends Component {
                         
 
                     </svg>
-                </div>
+
             </div>
         );
     }

@@ -110,7 +110,9 @@ class ConceptDetailPanel extends Component {
                                 SentRange = {this.props.SentRange}
                                 SetHoverVideoIndex = {this.props.SetHoverVideoIndex}
                                 HoverVideoIndex = {this.props.HoverVideoIndex}
+                                SetProgress = {this.props.SetProgress} 
                                 video_sequences={this.props.data.video_sequences[this.props.Path_ConceptIndex]}
+                                SetVideoId = {this.props.SetVideoId} 
                             />
                         </g>
                         </div>

@@ -9,6 +9,7 @@ import Video_info from './newdirected/Video_info';
 import BarField from './components/BarField';
 import SearchField from './components/SearchField';
 import LearningMapFrame from './components/LearningMapFrame';
+import VideoMapFrame from './components/VideoMapFrame';
 import CreatingField from './components/CreatingField';
 import MenuDrawer from './components/MenuDrawer';
 import { EditorState } from 'draft-js';
@@ -18,29 +19,6 @@ import Cards from './components/Cards';
 
 
 
-function storedata() {
-  var firebaseConfig = {
-    apiKey: "AIzaSyD5ro8Oj_EHuFweJR3bywJCO49egETQp7g",
-    authDomain: "test-7916a.firebaseapp.com",
-    databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "test-7916a",
-    storageBucket: "test-7916a.appspot.com",
-    messagingSenderId: "931195594829",
-    appId: "1:931195594829:web:65c637f9dc54e245d4d404",
-    measurementId: "G-T5RH81V2MG"
-    };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  var db = firebase.firestore();
-  db.collection("movies").doc("Harry Potter").set(
-    {
-      name:"Harry",
-      date:"2010",
-    }
-  )
-  console.log("hit!!")
-}
 
 /*** * 獲取當前瀏覽器類型 */ 
 function myBrowser() { 
@@ -85,8 +63,10 @@ class App extends React.Component {
       Progress:1,
       SearchHistory:null,
       VisJson:null,
-      SearchKeyword:null
+      SearchKeyword:null,
+      videoId:null,
   };
+    this.SetVideoId = this.SetVideoId.bind(this);
     this.SetProgress = this.SetProgress.bind(this);
     this.SetMenuOpen = this.SetMenuOpen.bind(this);
     this.SetMenuClose = this.SetMenuClose.bind(this);
@@ -96,6 +76,9 @@ class App extends React.Component {
     this.CloseDrawer = this.CloseDrawer.bind(this);
     this.SetVisJson = this.SetVisJson.bind(this);
     this.SetNewJson = this.SetNewJson.bind(this);
+  }
+  SetVideoId(vid){
+    this.setState({videoId : vid});
   }
   SetVisJson(json){
     this.setState({VisJson : json});
@@ -204,9 +187,11 @@ class App extends React.Component {
           />
           <LearningMapFrame data={this.state.VisJson} 
                             OpenDrawer={(text) =>this.OpenDrawer(text)}
+                            SetProgress = {this.SetProgress} 
                             SetVisJson = {this.SetVisJson}
                             SetNewJson = {this.SetNewJson}
                             NewJson = {this.state.NewJson}
+                            SetVideoId = {this.SetVideoId} 
           />
           <Dialog
             fullScreen
@@ -215,6 +200,34 @@ class App extends React.Component {
           >
           <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
           </Dialog>
+          </MuiThemeProvider> 
+        </div>
+      );
+    }else if(this.state.Progress==4){
+      return(
+        <div style={{userSelect: "none"}}>
+          <MuiThemeProvider>
+            <BarField 
+              SetProgress = {this.SetProgress} 
+              SetMenuOpen = {this.SetMenuOpen} 
+              SetSearchHistory={this.SetSearchHistory}
+            />
+            <VideoMapFrame    data={this.state.VisJson} 
+                              OpenDrawer={(text) =>this.OpenDrawer(text)}
+                              SetVisJson = {this.SetVisJson}
+                              SetNewJson = {this.SetNewJson}
+                              NewJson = {this.state.NewJson}
+                              SetProgress = {this.SetProgress}
+                              videoId = {this.state.videoId}
+                              SetVideoId = {this.SetVideoId} 
+            />
+            <Dialog
+              fullScreen
+              open={this.state.drawer}
+              onClose={this.CloseDrawer}
+            >
+            <Video_info vid = {this.state.selectedVid} videos_info = {this.state.VisJson.videos_info} CloseDrawer={this.CloseDrawer} />
+            </Dialog>
           </MuiThemeProvider> 
         </div>
       );

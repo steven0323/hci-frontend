@@ -79,18 +79,23 @@ class Editor extends Component {
       this.onInput=this.onInput.bind(this);
       this.save = this.save.bind(this);
       this.getSunEditorInstance = this.getSunEditorInstance.bind(this);
+      this.handleResize = this.handleResize.bind(this);
       this.state = {
-        content:this.props.content
+        content:this.props.content,
+        windowWidth:window.innerWidth,
+        windowHeight:window.innerHeight,
       };
       this.ref = React.createRef();
       }
     handleChange(content){
       //var today = new Date();
-      mydatabase.ref('/change/').set({content});
+      //mydatabase.ref('/change/').set({content});
       //console.log(content,typeof(content));
       //console.log("this.ref = ", this.ref);
       //console.log(this.ref.current.core)
-      var keyword = this.props.content;
+
+      //commented in 8/25------------------------------------------------------
+      /*var keyword = this.props.content;
       if(keyword!=" "){
           if (content.includes(keyword) && !content.includes("<strong>"+keyword)){
           //var n = content.search("bitcoin")
@@ -109,8 +114,9 @@ class Editor extends Component {
         //this.setState({content : this.props.content});
         this.setState({content : content});
         //this.forceUpdate();
-      }
+      }*/
     };
+    
     onInput(e, core){
       console.log('onInput', e, core);
     };
@@ -125,9 +131,12 @@ class Editor extends Component {
     onBlur(event, core){
       console.log("on Blur!!");
     };
-    componentDidUpdate(prevProps, prevState, snapshot){
-      console.log("content update!!")
-      if (this.props.content == " "){
+    componentDidUpdate(prevProps, prevState, snapshot){     //props.content stands for the key to be highlight
+                                                            // unless it's " ", " " means that nothing 
+                                                            // should be highlighted
+                                                            //this if is to cancel the highlight
+        //commented in 8/25-----------------------------------------------------------
+        /*if (this.props.content == " "){                      
         var prevKey = prevProps.content;
         var content = this.ref.current.core.getContents();
         if (content.includes(prevKey)){
@@ -138,9 +147,9 @@ class Editor extends Component {
           this.ref.current.core.focusEdge();
         }
       }
-      else if(prevProps.content!==this.props.content){
-        var keyword = this.props.content;
-        var content = this.ref.current.core.getContents();
+      else if(prevProps.content!==this.props.content){              //this is to add the new highlight
+        var keyword = this.props.content;                           //which is, if the new key is not " "
+        var content = this.ref.current.core.getContents();          //(there are things to highlight) and differs from the prev.
         //console.log("contents=",this.ref.current.core.getContents());
         if (content.includes(keyword) && !content.includes("<strong>"+keyword)){
           //var n = content.search("bitcoin")
@@ -152,38 +161,68 @@ class Editor extends Component {
           //console.log("DidUpdate: ",content,">>>",newcontent);
           this.ref.current.core.focusEdge();
         }
-      }      
+      }*/
+      
+      if((prevProps.cardEditing==false)&&(this.props.cardEditing==true)){
+        this.ref.current.setContents(this.props.editorContent);
+        this.ref.current.core.focusEdge();
+      }
+      
   }
+  
   componentDidMount(){
-    console.log(this.ref);
+    window.addEventListener("resize", this.handleResize);
+  }
+  handleResize(e){
+      this.setState({windowWidth : window.innerWidth,
+                      windowHeight : window.innerHeight});
   }
   save(){
     //console.log("SetMapConsult(add)");
     //console.log(this.ref.current);
-    this.props.SetNewCardContent(this.ref.current.getText());
+    var content = this.ref.current.getText();
     var tmp = this;
-    fetch('http://localhost:8001/GetJson/')     //跟後端連結去getJson
-    .then(function (res) {
-        //console.log(res.json());
-        return res.json();
-    }).then(function(myJson) {
-        tmp.props.SetNewJson(myJson);
-        return myJson;
-    });
-    //console.log(this.props);
-    //this.props.SetMapConsult("add");
-    //mydatabase.ref('/save').set({contents});
+    var userId = "John";
+    var concept = this.props.searchInfo;
+    var cardId = this.props.editingCardId;
+    
+    if(this.props.cardEditing==false){
+      
+      var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveEditor/';
+      sendBackEnd = sendBackEnd+concept+"&"+userId+"&"+content;
+      fetch(sendBackEnd);     //跟後端連結去getJson
+      /*.then(function (res) {
+          console.log(res);
+          //return res.json();
+      }).then(function(myJson) {
+          tmp.props.SetNewJson(myJson);
+          return myJson;
+      });*/
+      //console.log(this.props);
+      //this.props.SetMapConsult("add");
+      //mydatabase.ref('/save').set({contents});
+    }
+    else{
+      
+      var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveCard/';
+      sendBackEnd = sendBackEnd+concept+"&"+cardId+"&"+userId+"&"+content;
+      console.log("sendBackEnd = ", sendBackEnd);
+      fetch(sendBackEnd);     //跟後端連結去getJson
+      this.props.SetCardEdit(false,"");
+    }
+    
   }
 
     render() {
-      var width = (window.innerWidth/3)+"px";
+      var width = (this.state.windowWidth/2-100)+"px";
+      var height = (this.state.windowHeight/3)-250+"px";
       return (
         <div>
         <SunEditor      
-                        width = '600px'
+                        width = {width}
+                        height = {height}
                         SetMapConsult = {this.props.SetMapConsult}
                         setOptions = {{
-                          height:window.innerHeight-100,
                           plugins: [plugin_command],
                           buttonList:[
                             ['undo', 'redo'],

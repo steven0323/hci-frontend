@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Learning Map</title>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
 	<!-- <link rel="icon" type="image/png" href="molecule.png" /> -->
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -16,20 +17,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Hahmlet&display=swap" rel="stylesheet">
-	<script language="javascript">
+	<!--<script language="javascript">
 				
-		function storedata() {
-			if (!firebase.apps.length) {
-			firebase.initializeApp({
-				databaseURL: "https://test-7916a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-			});
-			}else {
-			firebase.app(); // if already initialized, use that one
-			}
-			const mydatabase = firebase.database();
-			mydatabase.ref('/').set({a:123});
-			console.log("hit!")	
-
+		Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
 
 
@@ -66,6 +56,7 @@
 		*/
 		}
 	</script>
+-->
 
 </head>
 <body>

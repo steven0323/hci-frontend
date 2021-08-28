@@ -1,0 +1,20 @@
+h4 {
+    text-align: justify;
+    /*height: 25px;*/
+    font-size:24px;
+
+  }
+  p {
+    text-align: justify;
+    font-size: 16px;
+  }
+  .links {
+    text-align: left;
+    color: black;
+  }
+  .cardContent {
+    padding: 4px;
+  }
+  .cardText {
+    margin-bottom: 15px;
+  }
