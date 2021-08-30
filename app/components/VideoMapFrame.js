@@ -275,22 +275,24 @@ class LearningMapFrame extends Component {
                     <div width={window.innerWidth} height={window.innerHeight - 100}>
                         <ReactPlayer    url={"https://www.youtube.com/watch?v="+this.props.videoId}
                                         width={window.innerWidth/2 -50 }
-                                        height={window.innerHeight/2 +100} />
+                                        height={window.innerHeight/2 +100}
+                                        controls = {true} />
                     </div>
                 
-                    <div style = {styles.Editor}>
+                    <div>
                         <Editor content = {this.state.content}
                                 SetMapConsult = {this.SetMapConsult}
                                 SetNewJson = {this.props.SetNewJson}
                                 searchInfo = {this.props.data.search_info.key}
                                 SetNewCardContent = {this.SetNewCardContent}
                                 SetCardEdit = {this.SetCardEdit}
+                                userId={this.props.userId}
                                 cardEditing = {this.state.cardEditing}
                                 editingCardId = {this.state.editingCardId}
                                 editorContent={this.state.editorContent}
                         />
-                        {/*<button onClick={()=>this.SetMapConsult("add")}
-                                className="btn btn-primary btn-lg m-5">Show New Map</button>*/}
+                        <button onClick={()=>this.props.SetProgress("3")}
+                                className="btn btn-primary btn-lg m-5">Hide Video</button>
                     </div>  
                 </div>
 

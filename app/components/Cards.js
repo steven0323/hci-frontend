@@ -44,27 +44,30 @@ class Cards extends Component {
         var tmp = this;
         db.ref(path).on('value', function(snapshot){
             tmp.state.cards = JSON.parse(JSON.stringify(snapshot.val()));
-            console.log("tmp.state.cards", tmp.state.cards);
-            console.log("keys = ", Object.keys(tmp.state.cards));
-            var keys = Object.keys(tmp.state.cards);
-            var cards = [];
-            var i =0;
-            while(i<keys.length){
-                var cardId = keys[i];
-                var cardContent = tmp.state.cards[cardId].cardContent;
-                var likes = tmp.state.cards[cardId].likes;
-                var userId = tmp.state.cards[cardId].userId;
-                var card = {cardId:cardId, cardContent:cardContent, userId: userId, likes:likes };
-                cards.push(card);
-                i = i+1;
+            //console.log("tmp.state.cards", tmp.state.cards);
+            //console.log("keys = ", Object.keys(tmp.state.cards));
+            
+            if((tmp.state.cards!=null)||(tmp.state.cards!=undefined)){
+                var keys = Object.keys(tmp.state.cards);
+                var cards = [];
+                var i =0;
+                while(i<keys.length){
+                    var cardId = keys[i];
+                    var cardContent = tmp.state.cards[cardId].cardContent;
+                    var likes = tmp.state.cards[cardId].likes;
+                    var userId = tmp.state.cards[cardId].userId;
+                    var card = {cardId:cardId, cardContent:cardContent, userId: userId, likes:likes };
+                    cards.push(card);
+                    i = i+1;
+                }
+                console.log("cards = ", cards);
+                cards.sort(function(a, b){
+                    return b.likes-a.likes;
+                });
             }
-            console.log("cards = ", cards);
-            cards.sort(function(a, b){
-                return b.likes-a.likes;
-            });
             tmp.state.cards = cards;
             tmp.forceUpdate();
-            console.log("tmp.state.cards", tmp.state.cards);
+            //console.log("tmp.state.cards", tmp.state.cards);
         });
         const styles = ({
             ul: {
@@ -164,27 +167,31 @@ class Cards extends Component {
                 }
             });
         };
-        return (
-            <div className="relative" style={styles.ul}> 
-                {this.state.cards.map(card =>
-                    (<Card content={card.cardContent}
-                            key = {card.cardId}
-                            cardId = {card.cardId}
-                            userId = {card.userId}
-                            onDelete={this.handleDelete}
-                            onEdit={this.handleEdit} 
-                            onSave={this.handleSave}
-                            handleThumbsCnt={this.handleThumbsCnt}
-                            thumbsCnt={card.likes}
-                            SetCardEdit={this.props.SetCardEdit}
-                            concept = {this.state.concept}
-                            SetEditorContent = {this.props.SetEditorContent}
-                            cardEditing = {this.props.cardEditing}
-                            editingCardId = {this.props.editingCardId}
-                            style = {styles}/>
-                    ))}
-            </div>
-        );
+        if(this.state.cards!=null){
+            return (
+                <div className="relative" style={styles.ul}> 
+                    {this.state.cards.map(card =>
+                        (<Card content={card.cardContent}
+                                key = {card.cardId}
+                                cardId = {card.cardId}
+                                userId = {card.userId}
+                                onDelete={this.handleDelete}
+                                onEdit={this.handleEdit} 
+                                onSave={this.handleSave}
+                                handleThumbsCnt={this.handleThumbsCnt}
+                                thumbsCnt={card.likes}
+                                SetCardEdit={this.props.SetCardEdit}
+                                concept = {this.state.concept}
+                                SetEditorContent = {this.props.SetEditorContent}
+                                cardEditing = {this.props.cardEditing}
+                                editingCardId = {this.props.editingCardId}
+                                style = {styles}/>
+                        ))}
+                </div>
+            );
+        }else{
+            return null;
+        }
     }
 }
 

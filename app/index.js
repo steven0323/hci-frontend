@@ -65,7 +65,9 @@ class App extends React.Component {
       VisJson:null,
       SearchKeyword:null,
       videoId:null,
+      userId:null,
   };
+    this.SetUserId = this.SetUserId.bind(this);
     this.SetVideoId = this.SetVideoId.bind(this);
     this.SetProgress = this.SetProgress.bind(this);
     this.SetMenuOpen = this.SetMenuOpen.bind(this);
@@ -79,6 +81,9 @@ class App extends React.Component {
   }
   SetVideoId(vid){
     this.setState({videoId : vid});
+  }
+  SetUserId(uid){
+    this.setState({userId : uid});
   }
   SetVisJson(json){
     this.setState({VisJson : json});
@@ -158,7 +163,9 @@ class App extends React.Component {
                 SetSearchHistory={this.SetSearchHistory} 
                 SetMenuClose={this.SetMenuClose}
                 />
-              <SearchField SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
+              <SearchField 
+                SetUserId = {this.SetUserId}
+                SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
         </div>
       
@@ -186,6 +193,7 @@ class App extends React.Component {
             SetSearchHistory={this.SetSearchHistory}
           />
           <LearningMapFrame data={this.state.VisJson} 
+                            userId={this.state.userId}
                             OpenDrawer={(text) =>this.OpenDrawer(text)}
                             SetProgress = {this.SetProgress} 
                             SetVisJson = {this.SetVisJson}
@@ -215,6 +223,7 @@ class App extends React.Component {
             <VideoMapFrame    data={this.state.VisJson} 
                               OpenDrawer={(text) =>this.OpenDrawer(text)}
                               SetVisJson = {this.SetVisJson}
+                              userId={this.state.userId}
                               SetNewJson = {this.SetNewJson}
                               NewJson = {this.state.NewJson}
                               SetProgress = {this.SetProgress}

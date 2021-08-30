@@ -9,6 +9,7 @@ import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import AlertDialog from './AlertDialog';
+import UserNameDialog from './UserNameDialog';
 import HomePageImg from './homepage3.png';
 import AutoSuggestions from './AutoSuggestions';
 
@@ -63,6 +64,7 @@ class SearchField extends Component {
             historyWords:[],
             alertOpen:false,
             alertCondition : null,
+            nameDialogOpen:true,
         }
         this.handleClick = this.handleClick.bind(this);
         this.TagClick = this.TagClick.bind(this);
@@ -70,6 +72,7 @@ class SearchField extends Component {
         this.HandleAlertClose = this.HandleAlertClose.bind(this);
         this.Go_CreateNewMap = this.Go_CreateNewMap.bind(this);
         this.Go_CheckExistedMap = this.Go_CheckExistedMap.bind(this);
+        this.HandleNameDialogClose = this.HandleNameDialogClose.bind(this);
     }
     componentWillMount(){
         // console.log("SearcgFieldMount");
@@ -169,6 +172,11 @@ class SearchField extends Component {
             alertOpen:false,
         });
     }
+    HandleNameDialogClose(){
+        this.setState({
+            nameDialogOpen:false,
+        });
+    }
     render() {
         // console.log("search",this.state.SearchKeyword);
         return (
@@ -193,6 +201,11 @@ class SearchField extends Component {
                 Go_CreateNewMap={this.Go_CreateNewMap}
                 Go_CheckExistedMap={this.Go_CheckExistedMap}
             />
+            <UserNameDialog 
+            nameDialogOpen={this.state.nameDialogOpen} 
+            HandleNameDialogClose={this.HandleNameDialogClose} 
+            SetUserId = {this.props.SetUserId}
+        />
             </div>
         );
         

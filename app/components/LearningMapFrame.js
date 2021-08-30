@@ -237,7 +237,7 @@ class LearningMapFrame extends Component {
                         SetHoverConceptIndex={this.SetHoverConceptIndex}
                         ClearHoverConcept = {this.ClearHoverConcept} 
                         OpenDrawer={(text) => props.OpenDrawer(text)}
-                        width={window.innerWidth - 50} height={window.innerHeight - 100}
+                        width={window.innerWidth/2 - 50} height={window.innerHeight - 100}
                         SentRange={SentRange}
                         ConceptRange={ConceptRange}
                         SetHoverVideoIndex={this.SetHoverVideoIndex}
@@ -261,6 +261,7 @@ class LearningMapFrame extends Component {
                     </div>
                     <div style = {styles.Editor}>
                     <Editor content = {this.state.content}
+                            userId={this.props.userId}
                             SetMapConsult = {this.SetMapConsult}
                             SetNewJson = {this.props.SetNewJson}
                             searchInfo = {this.props.data.search_info.key}

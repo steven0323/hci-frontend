@@ -182,7 +182,7 @@ class Editor extends Component {
     //console.log(this.ref.current);
     var content = this.ref.current.getText();
     var tmp = this;
-    var userId = "John";
+    var userId = this.props.userId;
     var concept = this.props.searchInfo;
     var cardId = this.props.editingCardId;
     
@@ -226,12 +226,8 @@ class Editor extends Component {
                           plugins: [plugin_command],
                           buttonList:[
                             ['undo', 'redo'],
-                            ['font', 'align', 'save' ],
-                            ["bold", "underline", "italic", "strike", "subscript", "superscript"],
-                            ["removeFormat"],
-                            ["outdent", "indent"],
-                            ['customCommand'],
-                            ['-right', ':i-More Misc-default.more_vertical', 'fullScreen', 'showBlocks', 'codeView', 'preview', 'print'],
+                            ['font', 'align'],
+                            ['-right', 'save']
                           ],
                           callBackSave : this.save
                     }}
