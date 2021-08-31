@@ -154,7 +154,7 @@ class Cards extends Component {
                     //overflowX: "scroll",
                     overflowY: "scroll",
                     width:tmp.props.graphWidth,
-                    height:(tmp.state.windowHeight/3)
+                    height:(tmp.state.windowHeight/2-100)
                 }
             });
         }else{

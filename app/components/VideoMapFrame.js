@@ -135,9 +135,7 @@ class LearningMapFrame extends Component {
         this.setState({
             content: word
         });
-        console.log("call set hightlight");
-        console.log("this.state.content=", this.state.content);
-        console.log("this.state.HLW=", this.state.HightlightWord);
+        this.props.SetHoverConceptIndexAtIndex(i);
         //console.log(word);
         //this.forceUpdate();
     }
@@ -239,14 +237,14 @@ class LearningMapFrame extends Component {
             <div style={styles.container}>
                 {/* {this.props.data.search_info.key} */}
                 {/* <div style = {styles.LeftField} > */}
-                <div width={window.innerWidth/2} height={window.innerHeight - 50}>
+                <div width={window.innerWidth/2} height={window.innerHeight }>
                     <Typography variant="headline" component="h5">
                         {this.props.data.search_info.key}
                     </Typography>
 
                     {/* <WordCloud videos_info={this.props.data.videos_info} HoverVideoIndex={this.state.HoverVideoIndex}/> */}
                     <Graph data={this.props.data}
-                        HoverConceptIndex={this.state.HoverConceptIndex}
+                        HoverConceptIndex={this.props.HoverConceptIndexAtIndex}
                         SetHoverConceptIndex={this.SetHoverConceptIndex}
                         ClearHoverConcept = {this.ClearHoverConcept} 
                         OpenDrawer={(text) => props.OpenDrawer(text)}
@@ -258,7 +256,13 @@ class LearningMapFrame extends Component {
                         Path_ConceptIndex={this.state.Path_ConceptIndex}
                         SetPath_ConceptIndex={this.SetPath_ConceptIndex}
                         BigCircleIndex={this.state.BigCircleIndex}
+                        
+                        HoverConceptIndexAtIndex = {this.props.HoverConceptIndexAtIndex}
+                        HighlightNodesAtIndex = {this.props.HighlightNodesAtIndex}
+                        DirectNodesAtIndex = {this.props.DirectNodesAtIndex}
                         SetHightlightWord={this.SetHightlightWord}
+                        SetDirectNodesAtIndex = {this.props.SetDirectNodesAtIndex}
+                        SetHighlightNodesAtIndex = {this.props.SetHighlightNodesAtIndex}
                     />
                     <Cards 
                             progress={"4"}
@@ -309,6 +313,7 @@ class LearningMapFrame extends Component {
                     SetBigCircleIndex={this.SetBigCircleIndex}
                     SetProgress = {this.props.SetProgress} 
                     SetNewCardContent = {this.SetNewCardContent}
+                    SetVideoId = {this.props.SetVideoId} 
                 />
                 <MapApprovPanel 
                     data={this.props.data}
@@ -318,7 +323,7 @@ class LearningMapFrame extends Component {
                     SetNewJson = {this.props.SetNewJson}   
                     NewJson = {this.props.NewJson}
                 />
-                <Notification open={this.state.Path_ConceptIndex == null} />
+                {/*<Notification open={this.state.Path_ConceptIndex == null} />*/}
             </div>
 
         );

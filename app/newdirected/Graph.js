@@ -139,8 +139,8 @@ class Graph extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            HighlightNodes: [],
-            DirectNodes:[],
+            HighlightNodes: this.props.HighlightNodesAtIndex,
+            DirectNodes:this.props.DirectNodesAtIndex,
             // PopoverIndexes:[],
             studentslist : []
         };
@@ -187,6 +187,8 @@ class Graph extends Component {
                 DirectNodes:ans
             }
         );
+        this.props.SetHighlightNodesAtIndex(this.props.data.highlight_nodes[index]);
+        this.props.SetDirectNodesAtIndex(ans);
     }
     readFirebase()
     {

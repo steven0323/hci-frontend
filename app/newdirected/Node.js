@@ -204,9 +204,10 @@ class Node extends Component {
 
         // var NodeColor =  this.props.HighlightNodes.includes(this.props.data.index)? "#009FCC":"#555" ;
 
-        if (this.props.Path_ConceptIndex == this.props.data.index) {
+        if (this.props.Path_ConceptIndex == this.props.data.index) {        //Click Node
             var NodeColor = "#444444";
-        } else if (this.props.HoverConceptIndex == this.props.data.index) {
+            console.log("PathConceptIndex = ", this.props.Path_ConceptIndex);
+        } else if (this.props.HoverConceptIndex == this.props.data.index) {     //Hover Node
             var NodeColor = "#5c4350";
             // "#17667c"r
         }
@@ -227,11 +228,14 @@ class Node extends Component {
         if (this.props.updated == true) {
             var NodeColor = "#FF0000";
         }
-
-
+        
         return (
             <g className='node' >
                 {/* <circle ref="dragMe" onMouseOver={thi(s.handle.bind(this)}/> */}
+                {
+                    
+                        console.log((this.props.data.index==0)&&"nodeColor = ", NodeColor)
+                }
                 <circle ref="dragMe"
                     onClick={this.handleClick.bind(this)}
                     onMouseOver={this.handleHover.bind(this)}
@@ -240,6 +244,7 @@ class Node extends Component {
                     onMouseOut={this.handleMouseOut}
                     r={this.NodeRadius(this.props.data.count, this.props.ConceptRange)}
                     // r = {ScaleDotSize(this.props.data.count)}
+                
                     style={Object.assign({}, styles.circle, { opacity: NodeOpacityValue, fill: NodeColor })}
                 >
                 </circle>

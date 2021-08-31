@@ -66,7 +66,15 @@ class App extends React.Component {
       SearchKeyword:null,
       videoId:null,
       userId:null,
+      HoverConceptIndexAtIndex:null,
+      DirectNodesAtIndex:[],
+      HighlightNodesAtIndex:[],
   };
+    //for graph at videomapframe use---
+    this.SetHoverConceptIndexAtIndex = this.SetHoverConceptIndexAtIndex.bind(this);
+    this.SetDirectNodesAtIndex = this.SetDirectNodesAtIndex.bind(this);
+    this.SetHighlightNodesAtIndex = this.SetHighlightNodesAtIndex.bind(this);
+    //---------------------------------
     this.SetUserId = this.SetUserId.bind(this);
     this.SetVideoId = this.SetVideoId.bind(this);
     this.SetProgress = this.SetProgress.bind(this);
@@ -78,6 +86,15 @@ class App extends React.Component {
     this.CloseDrawer = this.CloseDrawer.bind(this);
     this.SetVisJson = this.SetVisJson.bind(this);
     this.SetNewJson = this.SetNewJson.bind(this);
+  }
+  SetHoverConceptIndexAtIndex(HoverConceptIndexAtIndex){
+    this.setState({HoverConceptIndexAtIndex});
+  }
+  SetDirectNodesAtIndex(DirectNodesAtIndex){
+    this.setState({DirectNodesAtIndex});
+  }
+  SetHighlightNodesAtIndex(HighlightNodesAtIndex){
+    this.setState({HighlightNodesAtIndex});
   }
   SetVideoId(vid){
     this.setState({videoId : vid});
@@ -165,6 +182,7 @@ class App extends React.Component {
                 />
               <SearchField 
                 SetUserId = {this.SetUserId}
+                userId = {this.state.userId}
                 SetProgress = {this.SetProgress} SearchHistory={this.state.SearchHistory} SetSearchHistory={this.SetSearchHistory} SetSearchKeyword={this.SetSearchKeyword} Set_NotFinishCreate={this.Set_NotFinishCreate}/>   
           </MuiThemeProvider>
         </div>
@@ -199,7 +217,15 @@ class App extends React.Component {
                             SetVisJson = {this.SetVisJson}
                             SetNewJson = {this.SetNewJson}
                             NewJson = {this.state.NewJson}
-                            SetVideoId = {this.SetVideoId} 
+                            SetVideoId = {this.SetVideoId}
+                            HighlightNodesAtIndex = {this.state.HighlightNodesAtIndex}
+                            DirectNodesAtIndex = {this.state.DirectNodesAtIndex}
+                            HoverConceptIndexAtIndex = {this.state.HoverConceptIndexAtIndex}
+                            
+                            SetHoverConceptIndexAtIndex = {this.SetHoverConceptIndexAtIndex}
+                            SetDirectNodesAtIndex = {this.SetDirectNodesAtIndex}
+                            SetHighlightNodesAtIndex = {this.SetHighlightNodesAtIndex}
+ 
           />
           <Dialog
             fullScreen
@@ -228,7 +254,14 @@ class App extends React.Component {
                               NewJson = {this.state.NewJson}
                               SetProgress = {this.SetProgress}
                               videoId = {this.state.videoId}
-                              SetVideoId = {this.SetVideoId} 
+                              SetVideoId = {this.SetVideoId}
+                              
+                              HoverConceptIndexAtIndex = {this.state.HoverConceptIndexAtIndex}
+                              HighlightNodesAtIndex = {this.state.HighlightNodesAtIndex}
+                              DirectNodesAtIndex = {this.state.DirectNodesAtIndex}
+                              SetHoverConceptIndexAtIndex = {this.SetHoverConceptIndexAtIndex}
+                              SetDirectNodesAtIndex = {this.SetDirectNodesAtIndex}
+                              SetHighlightNodesAtIndex = {this.SetHighlightNodesAtIndex} 
             />
             <Dialog
               fullScreen

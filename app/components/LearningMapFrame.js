@@ -118,9 +118,8 @@ class LearningMapFrame extends Component {
         this.setState({
             content: word
         });
-        console.log("call set hightlight");
-        console.log("this.state.content=", this.state.content);
-        console.log("this.state.HLW=", this.state.HightlightWord);
+        
+        this.props.SetHoverConceptIndexAtIndex(i);    
         //console.log(word);
         //this.forceUpdate();
     }
@@ -233,7 +232,7 @@ class LearningMapFrame extends Component {
                     />
                     {/* <WordCloud videos_info={this.props.data.videos_info} HoverVideoIndex={this.state.HoverVideoIndex}/> */}
                     <Graph data={this.props.data}
-                        HoverConceptIndex={this.state.HoverConceptIndex}
+                        HoverConceptIndex={this.props.HoverConceptIndexAtIndex}
                         SetHoverConceptIndex={this.SetHoverConceptIndex}
                         ClearHoverConcept = {this.ClearHoverConcept} 
                         OpenDrawer={(text) => props.OpenDrawer(text)}
@@ -246,6 +245,11 @@ class LearningMapFrame extends Component {
                         SetPath_ConceptIndex={this.SetPath_ConceptIndex}
                         BigCircleIndex={this.state.BigCircleIndex}
                         SetHightlightWord={this.SetHightlightWord}
+                        HoverConceptIndexAtIndex = {this.props.HoverConceptIndexAtIndex}
+                        HighlightNodesAtIndex = {this.props.HighlightNodesAtIndex}
+                        DirectNodesAtIndex = {this.props.DirectNodesAtIndex}
+                        SetDirectNodesAtIndex = {this.props.SetDirectNodesAtIndex}
+                        SetHighlightNodesAtIndex = {this.props.SetHighlightNodesAtIndex}
                     />
                 </div>
                 

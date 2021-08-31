@@ -202,8 +202,9 @@ class SearchField extends Component {
                 Go_CheckExistedMap={this.Go_CheckExistedMap}
             />
             <UserNameDialog 
-            nameDialogOpen={this.state.nameDialogOpen} 
+            nameDialogOpen={this.props.userId==null} 
             HandleNameDialogClose={this.HandleNameDialogClose} 
+            userId = {this.props.userId}
             SetUserId = {this.props.SetUserId}
         />
             </div>
