@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 /* editor component */
 import SunEditor,{buttonList} from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
-import plugins from 'suneditor/src/plugins'
+import plugins, { template } from 'suneditor/src/plugins'
 import { axisLeft } from 'd3-axis';
 import SUNEDITOR from 'suneditor';
 //Start Connect to database----------
@@ -213,6 +213,7 @@ class Editor extends Component {
         return res.json();
     }).then(function(myJson) {
         tmp.props.SetNewJson(myJson);
+        tmp.props.SetVisJson(myJson);
         return myJson;
     });     //跟後端連結去getJson
       this.props.SetCardEdit(false,"");
