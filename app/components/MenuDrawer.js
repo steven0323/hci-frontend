@@ -154,6 +154,14 @@ class MenuDrawer extends Component {
                     clickable="true" 
                     // onDelete={this.TagDelete.bind(this,word)}
                 />
+                <Chip
+                    key = {"sorting_data_structure"} 
+                    label={"sorting_data_structure"} 
+                    style={styles.chip2}  
+                    onClick={this.ButtonClick.bind(this,4)} 
+                    clickable="true" 
+                    // onDelete={this.TagDelete.bind(this,word)}
+                />
                 </div>
             </Drawer>
             </div>

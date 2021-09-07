@@ -190,14 +190,14 @@ class Editor extends Component {
       
       var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveEditor/';
       sendBackEnd = sendBackEnd+concept+"&"+userId+"&"+content;
-      fetch(sendBackEnd);     //跟後端連結去getJson
-      /*.then(function (res) {
+      fetch(sendBackEnd)     //跟後端連結去getJson
+      .then(function (res) {
           console.log(res);
-          //return res.json();
+          return res.json();
       }).then(function(myJson) {
           tmp.props.SetNewJson(myJson);
           return myJson;
-      });*/
+      });
       //console.log(this.props);
       //this.props.SetMapConsult("add");
       //mydatabase.ref('/save').set({contents});
@@ -207,7 +207,14 @@ class Editor extends Component {
       var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveCard/';
       sendBackEnd = sendBackEnd+concept+"&"+cardId+"&"+userId+"&"+content;
       console.log("sendBackEnd = ", sendBackEnd);
-      fetch(sendBackEnd);     //跟後端連結去getJson
+      fetch(sendBackEnd)
+      .then(function (res) {
+        console.log(res);
+        return res.json();
+    }).then(function(myJson) {
+        tmp.props.SetNewJson(myJson);
+        return myJson;
+    });     //跟後端連結去getJson
       this.props.SetCardEdit(false,"");
     }
     

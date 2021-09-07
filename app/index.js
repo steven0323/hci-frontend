@@ -62,7 +62,7 @@ class App extends React.Component {
       selectedVid:null,
       Progress:1,
       SearchHistory:null,
-      VisJson:null,
+      VisJson:null,   //defaulted json to graph
       SearchKeyword:null,
       videoId:null,
       userId:null,
@@ -106,8 +106,8 @@ class App extends React.Component {
     this.setState({VisJson : json});
   }
   SetNewJson(json){
-    console.log("NewJson setted from ", this.state.NewJson, " to ", json);
-    this.setState({NewJson : json});
+    console.log("NewJson setted from ", this.state.VisJson, " to ", json);
+    this.setState({VisJson : json});
   }
 
 
