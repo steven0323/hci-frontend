@@ -274,6 +274,7 @@ class LearningMapFrame extends Component {
                             cardEditing = {this.state.cardEditing}
                             editingCardId = {this.state.editingCardId}
                             editorContent={this.state.editorContent}
+                            SetVisJson = {this.props.SetVisJson}
                     />
                     {/*<button onClick={()=>this.SetMapConsult("add")}
                             className="btn btn-primary btn-lg m-5">Show New Map</button>*/}

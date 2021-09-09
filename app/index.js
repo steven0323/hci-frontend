@@ -104,6 +104,7 @@ class App extends React.Component {
   }
   SetVisJson(json){
     this.setState({VisJson : json});
+    console.log("VisJson setted from ", this.state.VisJson, " to ", json);
   }
   SetNewJson(json){
     console.log("NewJson setted from ", this.state.NewJson, " to ", json);

@@ -65,7 +65,8 @@ class Node extends Component {
         super(props);
         this.state = {
             anchorEl: null,
-            studentslist: []
+            studentslist: [],
+            hovering:false,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -98,9 +99,12 @@ class Node extends Component {
 
     // let the node can be moved!!!
     componentDidUpdate() {
-        this.d3Node.datum(this.props.data)
+        if(this.props.hovering==true){
+            this.d3Node.datum(this.props.data)
             .call(this.props.updateNode)
         // console.log("Update!!",this.props.data.index,this.props.HighlightNodes);
+        }
+        
     }
 
 
@@ -155,16 +159,18 @@ class Node extends Component {
             console.log("node does not exist in content");
         }
         */
-        console.log("[hover],conceptMapNode", ",", this.props.data.name, ",", this.props.data.index);
+        //console.log("[hover],conceptMapNode", ",", this.props.data.name, ",", this.props.data.index);
         // console.log(ReactDOM.findDOMNode(this));
 
         //--------------------
-        console.log("this.props.data.name = ", this.state.studentslist);
+        //console.log("this.props.data.name = ", this.state.studentslist);
         //added 
-        console.log("hover mode!!");
+        //console.log("hover mode!!");
+        this.setState({hovering:true});
         this.props.SetHoverConceptIndex(this.props.data.index);
         this.props.SetHighlightNodes(this.props.data.index);
-
+        
+        this.props.SetNodeHovering(true);
     };
 
 
@@ -188,8 +194,11 @@ class Node extends Component {
         }
     }
     handleMouseOut(){
+        
+        this.setState({hovering:false});
+        this.props.SetNodeHovering(false);
         this.props.ClearHoverConcept();
-        console.log("handleout!!");
+        //console.log("handleout!!");
     }
 
     //欲修改Node顏色，於此區塊修改
@@ -223,7 +232,7 @@ class Node extends Component {
         }
         if (this.props.SetPath_ConceptIndex == false) {
             var NodeColor = "#AFC700";
-            console.log("fixing line ...");
+            //console.log("fixing line ...");
         }
         if (this.props.updated == true) {
             var NodeColor = "#FF0000";

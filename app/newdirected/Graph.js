@@ -29,7 +29,7 @@ if (!firebase.apps.length) {
 }
 
 
-
+var hovering = false;
 
 const styles = ({
     root:{
@@ -97,14 +97,15 @@ const enterLink = (selection) => {
         .style("opacity",".2")
 };
 const updateLink = (selection) => {
-    selection
+        selection
         .attr("x1", (d) => d.source.x)
         .attr("y1", (d) => d.source.y)
         .attr("x2", (d) => d.target.x)
         .attr("y2", (d) => d.target.y);
+    
 };
 const updateGraph = (selection) => {
-    
+    //if(hovering==true){
     selection.selectAll('.node')
         .call(updateNode);
         // .call(drag);
@@ -121,6 +122,7 @@ const updateGraph = (selection) => {
           });
     selection.select('.graphContainer')
     .call(zoom);
+    //}
 };
 
 
@@ -142,11 +144,16 @@ class Graph extends Component {
             HighlightNodes: this.props.HighlightNodesAtIndex,
             DirectNodes:this.props.DirectNodesAtIndex,
             // PopoverIndexes:[],
-            studentslist : []
+            studentslist : [],
+            hovering:false,
         };
-        
+        this.SetNodeHovering = this.SetNodeHovering.bind(this);
         this.SetHighlightNodes = this.SetHighlightNodes.bind(this);
         // this.SetPopoverIndexes = this.SetPopoverIndexes.bind(this);
+    }
+    SetNodeHovering(bool){
+        this.setState({hovering:bool});
+        hovering=bool;
     }
     componentDidMount() {
         this.d3Graph = d3.select(ReactDOM.findDOMNode(this));
@@ -176,7 +183,13 @@ class Graph extends Component {
             this.d3Graph.call(updateGraph)
         });
     }
-    
+    componentDidUpdate(prevProps,prevState) {
+        // 常見用法（別忘了比較 prop）：
+        if (this.props.data !== prevProps.data) {
+            console.log("data update!!");
+            this.forceUpdate();
+        };
+      }
     SetHighlightNodes(index){
         var ans = CheckDirectNodes(index,this.props.data.BFSinput[index]);
         // console.log("hhh",this.props.data.highlight_nodes[index]);
@@ -190,7 +203,7 @@ class Graph extends Component {
         this.props.SetHighlightNodesAtIndex(this.props.data.highlight_nodes[index]);
         this.props.SetDirectNodesAtIndex(ans);
     }
-    readFirebase()
+/*     readFirebase()
     {
         var db = firebase.database();
         db.ref("/save").on("value",function (snapshot){
@@ -208,10 +221,10 @@ class Graph extends Component {
         console.log("reading db complete ...")
             
     }
-    
+     */
     
     render() {
-        console.log("nodes = ", this.props.data.concept_relationship.nodes);
+        //console.log("nodes = ", this.props.data.concept_relationship.nodes);
         var nodes = this.props.data.concept_relationship.nodes.map( (node) => {
             try{
                 /*if(data_db.includes(node.name))
@@ -279,7 +292,7 @@ class Graph extends Component {
                         // OpenDrawer = {(text) =>this.props.OpenDrawer(text)}
                         SetHighlightNodes = {this.SetHighlightNodes}
                         HighlightNodes = {this.state.HighlightNodes}
-                        
+                        SetNodeHovering = {this.SetNodeHovering}
                         DirectNodes = {this.state.DirectNodes}
                         HoverConceptIndex = {this.props.HoverConceptIndex}
                         SetHoverConceptIndex={this.props.SetHoverConceptIndex}
@@ -360,8 +373,8 @@ class Graph extends Component {
         //         null
         //     );
         // });
-        console.log("nodes = ", nodes);
-        console.log("links = ", links);
+        //console.log("nodes = ", nodes);
+        //console.log("links = ", links);
         return (
             <div width={this.props.width} height={this.props.height} style={styles.root} >
                     <svg className="graph" width={(this.props.width)} height={this.props.height} style={styles.root2}>

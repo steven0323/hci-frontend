@@ -196,6 +196,8 @@ class Editor extends Component {
           return res.json();
       }).then(function(myJson) {
           tmp.props.SetNewJson(myJson);
+          
+        tmp.props.SetVisJson(myJson);
           return myJson;
       });
       //console.log(this.props);

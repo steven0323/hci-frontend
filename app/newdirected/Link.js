@@ -18,8 +18,10 @@ class Link extends Component {
     }
 
     componentDidUpdate() {
+        if(this.props.hovering==true){
         this.d3Link.datum(this.props.data)
             .call(this.props.updateLink);
+        }
         // console.log("Update!!",this.props.data.index,this.props.HighlightNodes);
         this.DoHighlight(ReactDOM.findDOMNode(this),this.props.HighlightNodes);
     }
