@@ -126,10 +126,25 @@ class Editor extends Component {
       console.log("this.ref = ",this.ref);
     }; 
     onFocus(event, core){
-      console.log("On Focus!!");
+      var currentdate = new Date(); 
+        var datetime = "Editor Focused: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
     };
     onBlur(event, core){
       console.log("on Blur!!");
+      var currentdate = new Date(); 
+        var datetime = "Editor Blurred: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
     };
     componentDidUpdate(prevProps, prevState, snapshot){     //props.content stands for the key to be highlight
                                                             // unless it's " ", " " means that nothing 
@@ -185,10 +200,19 @@ class Editor extends Component {
     var userId = this.props.userId;
     var concept = this.props.searchInfo;
     var cardId = this.props.editingCardId;
-    
+
+    var currentdate = new Date(); 
+    var datetime = "Save Pressed: " + currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " @ "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+    console.log(datetime);
+
     if(this.props.cardEditing==false){
       
-      var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveEditor/';
+      var sendBackEnd='https://conceptdiscussion.herokuapp.com/SaveEditor/';
       sendBackEnd = sendBackEnd+concept+"&"+userId+"&"+content;
       fetch(sendBackEnd)     //跟後端連結去getJson
       .then(function (res) {
@@ -206,7 +230,7 @@ class Editor extends Component {
     }
     else{
       
-      var sendBackEnd='https://conceptmap-backend.herokuapp.com/SaveCard/';
+      var sendBackEnd='https://conceptdiscussion.herokuapp.com/SaveCard/';
       sendBackEnd = sendBackEnd+concept+"&"+cardId+"&"+userId+"&"+content;
       console.log("sendBackEnd = ", sendBackEnd);
       fetch(sendBackEnd)

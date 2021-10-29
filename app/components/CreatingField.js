@@ -95,7 +95,7 @@ class CreateMapField extends Component {
         //     return myJson;
         // });
 
-        fetch('https://appbackend-hci.herokuapp.com/Analyze/'+keyword)
+        fetch('https://conceptdiscussion.herokuapp.com/Analyze/'+keyword)
         .then(function (res) {
             return res.json();
         }).then(function(myJson) {
@@ -157,7 +157,7 @@ class CreateMapField extends Component {
 
     handleClick(){
         var tmp = this;
-        fetch('https://appbackend-hci.herokuapp.com/GetJson/')
+        fetch('https://conceptdiscussion.herokuapp.com/GetJson/')
         .then(function (res) {
         //    console.log(res.json());
             return res.json();

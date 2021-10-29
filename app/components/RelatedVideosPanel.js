@@ -128,6 +128,14 @@ class RelatedVideosPanel extends Component {
     }
     videoClick(vid,index){
         console.log("[click],RelatedVideos",",",vid,",",index);
+        var currentdate = new Date(); 
+        var datetime = "Video ID- " + vid + " Clicked: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
         this.props.SetVideoId(vid);
         this.props.SetProgress(4);
     }

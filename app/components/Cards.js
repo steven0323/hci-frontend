@@ -92,7 +92,7 @@ class Cards extends Component {
         this.setState({cards});
     }
     handleDelete(cardId) {
-        var sendBackEnd='https://conceptmap-backend.herokuapp.com/DeleteCard/'+this.state.concept+"&"+cardId;
+        var sendBackEnd='https://conceptdiscussion.herokuapp.com/DeleteCard/'+this.state.concept+"&"+cardId;
         console.log("handleDelete = ",sendBackEnd);
         fetch(sendBackEnd);
     }

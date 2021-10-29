@@ -53,6 +53,14 @@ class Card extends Component {
         this.props.SetCardEdit(this.props.cardId);     //key is the cardId
         this.props.SetEditorContent(this.props.content);
         this.props.SetCardEdit(true, this.props.cardId);
+        var currentdate = new Date(); 
+        var datetime = "Edit Pressed: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
     }
     /*handleSave(){
         this.ref.current.disabled();
@@ -63,6 +71,14 @@ class Card extends Component {
     handleCancel(){
         this.props.SetCardEdit("");
         this.props.SetCardEdit(false, this.props.cardId);
+        var currentdate = new Date(); 
+        var datetime = "Cancel Pressed: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
     }
     componentDidUpdate(prevProps) {
         if (this.props.id !== prevProps.id) {        
@@ -76,7 +92,14 @@ class Card extends Component {
             var thumbColor ="disabled";
         }
         var sendBackEnd='https://conceptmap-backend.herokuapp.com/LikeCard/'+this.props.concept+"&"+this.props.cardId;
-        console.log("LIKE", sendBackEnd);
+        var currentdate = new Date(); 
+        var datetime = "Thumb Pressed: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        console.log(datetime);
         fetch(sendBackEnd);
         this.setState({thumbColor});
     }
